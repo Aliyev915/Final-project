@@ -1,0 +1,247 @@
+﻿@model HomeVM
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!-- banner-area -->
+<div class="banner-area">
+    <img src="~/img/banner/banner-2.jpg" alt="banner">
+    <div class="content">
+        <h1>Find your job</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+    </div>
+    <div class="search-area">
+        <form id="search" class="form-group">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 col-md-6 col-sm-8">
+                        <input type="text" class="form-control" placeholder="Job title, Keywords or company name">
+                    </div>
+                    <div class="col-4 location-area">
+                        <div id="location">
+                            <div>location</div>
+                            <i class="fas fa-caret-down"></i>
+                        </div>
+                        <ul class="selection">
+                            @foreach (Location item in Model.Locations)
+                            {
+                                <li>@item.Name</li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="col-md-2 col-sm-4">
+                        <button class="findJob">Find a Job</button>
+                        <button class="search-icon">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="clock">
+        <h2>The time is now</h2>
+        <div class="time">
+            <div>
+                <span class="hour">00</span>
+                <span>Hours</span>
+            </div>
+            <div>
+                <span class="minute">00</span>
+                <span>Minutes</span>
+            </div>
+            <div>
+                <span class="second">00</span>
+                <span>Seconds</span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- banner-area -->
+
+<!-- categories end -->
+<div class="categories">
+    <div class="container">
+        <div class="content">
+            <div class="title">
+                <h2>Popular Categories</h2>
+            </div>
+            <div class="description">
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+            </div>
+        </div>
+        <div class="job-category">
+            <div class="row">
+                @foreach (Category item in Model.Categories)
+	            {   
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="icon">
+                        @Html.Raw(item.Icon)
+                    </div>
+                    <div class="name">
+                        @item.Name
+                    </div>
+                    <div class="count">
+                        (@item.Jobs.Count)
+                    </div>
+                </div>		 
+	            }
+            </div>
+        </div>
+    </div>
+</div>
+<!-- categories end -->
+
+<!-- recent jobs start -->
+<div class="recent-jobs">
+    <div class="container">
+        <div class="content">
+            <div class="title">
+                <h2>Recent Jobs</h2>
+            </div>
+            <div class="description">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+            </div>
+        </div>
+        <div class="job-list">
+            @foreach (Job item in Model.Jobs)
+            {
+                <div class="job-about">
+                    <div class="row">
+                        <div class="col-md-2 col-sm-4">
+                            <div class="company-logo">
+                                <img src="~/img/company-logo/@item.Company.Logo" alt="logo">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-8">
+                            <div class="name">
+                                <h5>@item.Name</h5>
+                            </div>
+                            <div class="add-info">
+                                <div class="row">
+                                    <p><i class="fas fa-briefcase"></i> @item.Category.Name</p>
+                                    <p><i class="fas fa-map-marker-alt"></i>@item.Location.Name</p>
+                                    <p><i class="far fa-clock"></i> Full Time</p>
+                                </div>
+                            </div>
+                            <div class="deadline">
+                                <p>Deadline: @item.Deadline.ToString("MMMM").Substring(0,3) @item.Deadline.Day, @item.Deadline.Year</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="row">
+                                <div class="favorite">
+                                    <i class="far fa-heart"></i>
+                                </div>
+                                <div class="apply">
+                                    <a asp-controller="Job" asp-action="Detail" class="btn-apply">Apply Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="browse-job">
+            <a href="~/" class="btn-browse">Browse All Jobs</a>
+        </div>
+    </div>
+</div>
+<!-- recent jobs end -->
+
+<!-- statistics start -->
+<div class="statistics">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            @foreach (Statistic item in Model.Statistics)
+            {
+                <div class="col-lg-3 col-md-6">
+                    <div class="member">
+                        @Html.Raw(item.Icon)
+                        <h1 class="counter text-white" data-to="@Convert.ToInt32(item.Id*100)">@Convert.ToInt32(item.Id * 100)</h1>
+                        <p class="text-white">@item.Title</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<!-- statistics end -->
+
+<!-- partnership companies start -->
+<div class="partnership-company">
+    <div class="container">
+        <div class="content">
+            <div class="title">
+                <h2>Companies We've Helped</h2>
+            </div>
+            <div class="description">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+        </div>
+        <div class="row owl-carousel">
+            @foreach (Company item in Model.Companies)
+            {
+                <div class="brand">
+                    <img src="~/img/brand/@item.Brand" alt="">
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<!-- partnership companies end -->
+
+<!-- latest blogs -->
+<div class="blog-area">
+    <div class="container">
+        <div class="content">
+            <div class="title">
+                <h2>Latest Blog</h2>
+            </div>
+            <div class="description">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+        </div>
+        <div class="row owl-carousel owl-theme">
+            @foreach (Blog item in Model.Blogs)
+            {
+                <div class="blog">
+                    <div class="image">
+                        <img src="~/img/blog/@item.Image" alt="">
+                        <div class="date">
+                            <p class="text-white">@item.Time.Day</p>
+                            <p class="text-white">@item.Time.ToString("MMMM").Substring(0,3)</p>
+                        </div>
+                    </div>
+                    <div class="blog-body">
+                        <div class="title">
+                            <h3><a href="~/">@item.Title</a></h3>
+                        </div>
+                        <div class="features">
+                            <p><i class="fas fa-user"></i> Admin</p>
+                            <p><i class="far fa-comment-dots"></i> 27</p>
+                            <p><i class="far fa-heart"></i>27</p>
+                        </div>
+                        <div class="description">
+                            @if (item.Description.Length <= 100)
+                            {
+                                @item.Description
+                            }
+                            else
+                            {
+                                @item.Description.Substring(0,100)
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="icons left">
+            <i class="fas fa-angle-left"></i>
+        </div>
+        <div class="icons right">
+            <i class="fas fa-angle-right"></i>
+        </div>
+    </div>
+</div>
+<!-- latest blogs -->

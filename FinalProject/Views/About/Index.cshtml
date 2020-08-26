@@ -1,0 +1,100 @@
+﻿@model AboutVM
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<!--about us section start  -->
+<div class="about-us">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="slider">
+                    <div class="image">
+                        @foreach (Slider item in Model.Sliders)
+                        {
+                            <div class="item">
+                                <img src="img/gallery/@item.Image" alt="">
+                            </div>
+                        }
+                    </div>
+                    <div class="square-icon left-icon">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <div class="square-icon right-icon">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="welcome">
+                    <h3>Welcome To Jobb</h3>
+                    <p>
+                        One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his
+                        bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a
+                        little he could see his brown belly
+                    </p>
+                    <p>
+                        transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he
+                        lifted. transformed in his bed into a horrible vermin. He lay on his armour-like back, and
+                        if he lifted.
+                    </p>
+                    <a href="" class="btn-send">Read More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--about us section end  -->
+
+<!-- Our Services start -->
+<div class="service-area">
+    <div class="container">
+        <div class="title">
+            <h2>Our Service</h2>
+        </div>
+        <div class="description">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+        <div class="service">
+            <div class="row">
+                @foreach (Service item in Model.Services)
+                {
+                    <div class="col-lg-4">
+                        <div class="service-box">
+                            <div class="service-icon">
+                                @Html.Raw(item.Icon)
+                            </div>
+                            <div class="service-title">
+                                <h3>@item.Title</h3>
+                            </div>
+                            <div class="service-text">
+                                <p>@item.Description</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Our Services end -->
+
+<!-- statistics start -->
+<div class="statistics">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            @foreach (Statistic item in Model.Statistics)
+            {
+                <div class="col-lg-3 col-md-6">
+                    <div class="@item.Title">
+                        @Html.Raw(item.Icon)
+                        <h1 class="counter text-white" data-to="@Convert.ToInt32(item.Id*100)">@Convert.ToInt32(item.Id * 100)</h1>
+                        <p class="text-white">@item.Title</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<!-- statistics end -->
