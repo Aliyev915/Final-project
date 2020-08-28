@@ -86,9 +86,6 @@
                         <a asp-area="Admin" asp-controller="Blog" asp-action="Index">Manage Blog</a>
                     </li>
                     <li>
-                        <a asp-area="Admin" asp-controller="Profile" asp-action="Edit">Change Password</a>
-                    </li>
-                    <li>
                         <a asp-area="Admin" asp-controller="Profile" asp-action="Edit">Edit Profile</a>
                     </li>
                     <li>
@@ -101,76 +98,7 @@
     <!-- header -->
 
     <div class="main">
-        <div class="left-side">
-            <div class="title">
-                <h4>Main</h4>
-            </div>
-            <div class="mainList">
-                <ul>
-                    <li class="active-link">
-                        <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index">
-                            <i class="fas fa-tachometer-alt"></i>
-                            Dashboard
-                        </a>
-                    </li>
-                    <li>
-                        <a asp-area="Admin" asp-controller="Dashboard" asp-action="Post">
-                            <i class="fas fa-plus"></i>
-                            Post a New Job
-                        </a>
-                    </li>
-                    <li>
-                        <a asp-area="Admin" asp-controller="Candidate" asp-action="Index">
-                            <i class="fas fa-user-check"></i>
-                            Manage Candidate
-                        </a>
-                    </li>
-                    <li>
-                        <a asp-area="Admin" asp-controller="Job" asp-action="Index">
-                            <i class="fas fa-briefcase"></i>
-                            Manage Jobs
-                        </a>
-                    </li>
-                    <li>
-                        <a asp-area="Admin" asp-controller="Message" asp-action="Index">
-                            <i class="far fa-envelope"></i>
-                            Messages
-                        </a>
-                    </li>
-                    <li>
-                        <a asp-area="Admin" asp-controller="Blog" asp-action="Index">
-                            <i class="fas fa-blog"></i>
-                            Manage Blog
-                        </a>
-                    </li>
-                    <li>
-                        <a asp-area="Admin" asp-controller="Profile" asp-action="Edit">
-                            <i class="fas fa-lock"></i>
-                            Change Password
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="title">
-                <h4>Account</h4>
-            </div>
-            <div class="mainList">
-                <ul>
-                    <li>
-                        <a asp-area="Admin" asp-controller="Profile" asp-action="Edit">
-                            <i class="fas fa-user-edit"></i>
-                            Edit Profile
-                        </a>
-                    </li>
-                    <li>
-                        <a asp-controller="Account" asp-action="Logout">
-                            <i class="fas fa-sign-out-alt"></i>
-                            Logout
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        @await Component.InvokeAsync("Sidebar")
         @RenderBody()
     </div>
     <!-- back to top -->

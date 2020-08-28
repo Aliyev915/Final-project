@@ -1,0 +1,76 @@
+﻿@model Link[]
+@{
+    Layout = null;
+}
+
+    <div class="left-side">
+        <div class="title">
+            <h4>Main</h4>
+        </div>
+        <div class="mainList">
+            <ul>
+                @for (int i = 0; i < Model.Length - 2; i++)
+                {
+                    if (Model[i].Controller.Contains(ViewBag.Controller))
+                    {
+                            <li class="active-link">
+                                <a asp-area="Admin" asp-controller="@Model[i].Controller" asp-action="Index">
+                                    @Html.Raw(Model[i].Icon)
+                                    @Model[i].Name
+                                </a>
+                            </li>
+                        }
+                    else
+                    {
+                        <li>
+                            <a asp-area="Admin" asp-controller="@Model[i].Controller" asp-action="Index">
+                                @Html.Raw(Model[i].Icon)
+                                @Model[i].Name
+                            </a>
+                        </li>
+
+                    }
+                }
+            </ul>
+        </div>
+        <div class="title">
+            <h4>Account</h4>
+        </div>
+        <div class="mainList">
+            <ul>
+                @for (int i = Model.Length - 2; i < Model.Length; i++)
+                {
+                    if (Model[i].Controller.Contains(ViewBag.Controller))
+                    {
+                        if (ViewBag.Controller != "Account")
+                        {
+                            <li class="active-link">
+                                <a asp-area="Admin" asp-controller="@Model[i].Controller">
+                                    @Html.Raw(Model[i].Icon)
+                                    @Model[i].Name
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li >
+                                <a asp-area="Admin" asp-controller="@Model[i].Controller">
+                                    @Html.Raw(Model[i].Icon)
+                                    @Model[i].Name
+                                </a>
+                            </li>
+                        }
+                    }
+                    else
+                    {
+                        <li>
+                            <a asp-area="Admin" asp-controller="@Model[i].Controller">
+                                @Html.Raw(Model[i].Icon)
+                                @Model[i].Name
+                            </a>
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+    </div>

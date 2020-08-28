@@ -12,5 +12,6 @@ namespace FinalProject.Models
         [Required,StringLength(50)]
         public string Name { get; set; }
         public virtual ICollection<Job> Jobs { get; set; }
+        public virtual ICollection<Candidate> Candidates { get; set; }
     }
 }

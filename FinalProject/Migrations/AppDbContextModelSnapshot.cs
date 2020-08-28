@@ -19,6 +19,39 @@ namespace FinalProject.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("FinalProject.Models.Bio", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .IsRequired();
+
+                    b.Property<string>("BlackLogo")
+                        .IsRequired()
+                        .HasMaxLength(250);
+
+                    b.Property<string>("Email");
+
+                    b.Property<string>("Logo")
+                        .IsRequired()
+                        .HasMaxLength(250);
+
+                    b.Property<string>("Phone")
+                        .IsRequired();
+
+                    b.Property<string>("Web");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Bio");
+
+                    b.HasData(
+                        new { Id = 1, Address = "20/F Green Road, Dhaka", BlackLogo = "black-logo.png", Email = "info@themevessel.com", Logo = "logo.png", Phone = "+55 417 634 7071", Web = "info@themevessel.com" }
+                    );
+                });
+
             modelBuilder.Entity("FinalProject.Models.Blog", b =>
                 {
                     b.Property<int>("Id")
@@ -41,8 +74,128 @@ namespace FinalProject.Migrations
                     b.ToTable("Blogs");
 
                     b.HasData(
-                        new { Id = 1, Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five", Image = "blog-1.jpg", Time = new DateTime(2020, 8, 26, 0, 0, 0, 0, DateTimeKind.Local), Title = "Back To Work Vacantion" },
-                        new { Id = 2, Description = "lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.But also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.But also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. But also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.more recently with desktop publishing", Image = "blog-2.jpg", Time = new DateTime(2020, 8, 26, 0, 0, 0, 0, DateTimeKind.Local), Title = "Job Motivational Quote" }
+                        new { Id = 1, Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five", Image = "blog-1.jpg", Time = new DateTime(2020, 8, 28, 0, 0, 0, 0, DateTimeKind.Local), Title = "Back To Work Vacantion" },
+                        new { Id = 2, Description = "lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.But also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.But also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. But also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.more recently with desktop publishing", Image = "blog-2.jpg", Time = new DateTime(2020, 8, 28, 0, 0, 0, 0, DateTimeKind.Local), Title = "Job Motivational Quote" }
+                    );
+                });
+
+            modelBuilder.Entity("FinalProject.Models.Candidate", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("About");
+
+                    b.Property<int>("Candidate_SkillId");
+
+                    b.Property<string>("Fullname")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasMaxLength(250);
+
+                    b.Property<int>("LocationId");
+
+                    b.Property<string>("Profession")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Candidate_SkillId");
+
+                    b.HasIndex("LocationId");
+
+                    b.ToTable("Candidates");
+
+                    b.HasData(
+                        new { Id = 1, About = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam. Sed tempor iaculis massa faucibus feugiat.In fermentum facilisis massa, a consequat purus viverra a. Aliquam pellentesque nibh et nibh feugiat gravida. Maecenas ultricies, diam vitae semper placerat, velit risus accumsan nisl, eget tempor lacus est vel nunc. Proin accumsan elit sed neque euismod fringilla. Curabitur lobortis nunc velit, et fermentum urna dapibus non. Vivamus magna lorem, elementum id gravida ac, laoreet tristique augue. Maecenas dictum lacus eu nunc porttitor, ut hendrerit arcu efficitur.", Candidate_SkillId = 1, Fullname = "Martin Smith", Image = "avatar-1.jpg", LocationId = 1, Profession = "Content Writer" },
+                        new { Id = 2, About = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam. Sed tempor iaculis massa faucibus feugiat.In fermentum facilisis massa, a consequat purus viverra a. Aliquam pellentesque nibh et nibh feugiat gravida. Maecenas ultricies, diam vitae semper placerat, velit risus accumsan nisl, eget tempor lacus est vel nunc. Proin accumsan elit sed neque euismod fringilla. Curabitur lobortis nunc velit, et fermentum urna dapibus non. Vivamus magna lorem, elementum id gravida ac, laoreet tristique augue. Maecenas dictum lacus eu nunc porttitor, ut hendrerit arcu efficitur.", Candidate_SkillId = 2, Fullname = "Karen Paren", Image = "avatar-2.jpg", LocationId = 1, Profession = "Reustaurant Manager" },
+                        new { Id = 3, About = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam. Sed tempor iaculis massa faucibus feugiat.In fermentum facilisis massa, a consequat purus viverra a. Aliquam pellentesque nibh et nibh feugiat gravida. Maecenas ultricies, diam vitae semper placerat, velit risus accumsan nisl, eget tempor lacus est vel nunc. Proin accumsan elit sed neque euismod fringilla. Curabitur lobortis nunc velit, et fermentum urna dapibus non. Vivamus magna lorem, elementum id gravida ac, laoreet tristique augue. Maecenas dictum lacus eu nunc porttitor, ut hendrerit arcu efficitur.", Candidate_SkillId = 3, Fullname = "Phil Jones", Image = "avatar-3.jpg", LocationId = 2, Profession = "Bookkeeper" }
+                    );
+                });
+
+            modelBuilder.Entity("FinalProject.Models.Candidate_Education", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CandidateId");
+
+                    b.Property<string>("EducationYear")
+                        .IsRequired();
+
+                    b.Property<string>("School")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Speciality")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CandidateId");
+
+                    b.ToTable("Educations");
+
+                    b.HasData(
+                        new { Id = 1, CandidateId = 1, EducationYear = "2012-2016", School = "Dhaka College", Speciality = "Themeforest" },
+                        new { Id = 2, CandidateId = 1, EducationYear = "2016-2018", School = "University of south asia", Speciality = "Themeforest" }
+                    );
+                });
+
+            modelBuilder.Entity("FinalProject.Models.Candidate_Experience", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CandidateId");
+
+                    b.Property<string>("Company");
+
+                    b.Property<string>("ExperienceYear");
+
+                    b.Property<string>("Speciality");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CandidateId");
+
+                    b.ToTable("Experiences");
+
+                    b.HasData(
+                        new { Id = 1, CandidateId = 1, Company = "Themeforest", ExperienceYear = "2015 - 2019", Speciality = "Web Designer" },
+                        new { Id = 2, CandidateId = 1, Company = "Themeforest", ExperienceYear = "2019 - 2020", Speciality = "Graphic Designer" }
+                    );
+                });
+
+            modelBuilder.Entity("FinalProject.Models.Candidate_Skill", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Community");
+
+                    b.Property<int>("Language");
+
+                    b.Property<int>("LeaderShip");
+
+                    b.Property<int>("Speciality");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Skills");
+
+                    b.HasData(
+                        new { Id = 1, Community = 85, Language = 75, LeaderShip = 80, Speciality = 80 },
+                        new { Id = 2, Community = 95, Language = 85, LeaderShip = 80, Speciality = 90 },
+                        new { Id = 3, Community = 85, Language = 90, LeaderShip = 85, Speciality = 95 }
                     );
                 });
 
@@ -77,19 +230,50 @@ namespace FinalProject.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Brand");
+                    b.Property<string>("About")
+                        .IsRequired()
+                        .HasMaxLength(1000);
+
+                    b.Property<string>("Adress")
+                        .IsRequired();
+
+                    b.Property<string>("Brand")
+                        .IsRequired()
+                        .HasMaxLength(500);
 
                     b.Property<string>("Logo")
                         .IsRequired()
                         .HasMaxLength(500);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100);
 
                     b.HasKey("Id");
 
                     b.ToTable("Companies");
 
                     b.HasData(
-                        new { Id = 1, Brand = "brand-1.png", Logo = "logo-1.png" },
-                        new { Id = 2, Brand = "brand-2.png", Logo = "logo-2.png" }
+                        new { Id = 1, About = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus tincidunt aliquam. Aliquam gravida massa at sem vulputate interdum.", Adress = " 20/F Green Road, Dhaka", Brand = "brand-1.png", Logo = "logo-1.png", Name = "The Kings" },
+                        new { Id = 2, About = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus tincidunt aliquam. Aliquam gravida massa at sem vulputate interdum.", Adress = " 20/F Green Road, Dhaka", Brand = "brand-2.png", Logo = "logo-2.png", Name = "The Kings" }
+                    );
+                });
+
+            modelBuilder.Entity("FinalProject.Models.Demand", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Education");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Demands");
+
+                    b.HasData(
+                        new { Id = 1, Education = "M.B.S / M.B.A under National University with CA course complete_ 3 or more years of professional design experience_ Excellent communication skills, most notably a demonstrated ability to solicit and address creative and design feedback_ Masters of library science any Green University_ BA/BS degree in a technical field or equivalent practical experience" },
+                        new { Id = 2, Education = "Explore and design dynamic and compelling consumer experiences_Have sound knowledge of commercial activities_Build next-generation web applications with a focus on the client side_The applicants should have experience in the following areas" }
                     );
                 });
 
@@ -105,10 +289,18 @@ namespace FinalProject.Migrations
 
                     b.Property<DateTime>("Deadline");
 
+                    b.Property<int>("DemandId");
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("Experience");
+
                     b.Property<int>("LocationId");
 
                     b.Property<string>("Name")
                         .IsRequired();
+
+                    b.Property<int>("Salary");
 
                     b.HasKey("Id");
 
@@ -116,13 +308,43 @@ namespace FinalProject.Migrations
 
                     b.HasIndex("CompanyId");
 
+                    b.HasIndex("DemandId");
+
                     b.HasIndex("LocationId");
 
                     b.ToTable("Jobs");
 
                     b.HasData(
-                        new { Id = 1, CategoryId = 3, CompanyId = 1, Deadline = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), LocationId = 1, Name = "Green Development Marketer" },
-                        new { Id = 2, CategoryId = 1, CompanyId = 2, Deadline = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), LocationId = 2, Name = "Restaurant General Manager" }
+                        new { Id = 1, CategoryId = 3, CompanyId = 1, Deadline = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), DemandId = 1, Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam. Sed tempor iaculis massa faucibus feugiat. In fermentum facilisis massa, a consequat purus viverra a. Aliquam pellentesque nibh et nibh feugiat gravida. Maecenas ultricies, diam vitae semper placerat, velit risus accumsan nisl, eget tempor lacus est vel nunc. Proin accumsan elit sed neque euismod fringilla. Curabitur lobortis nunc velit, et fermentum urna dapibus non. Vivamus magna lorem, elementum id gravida ac, laoreet tristique augue. Maecenas dictum lacus eu nunc porttitor, ut hendrerit arcu efficitur.", Experience = "1-2", LocationId = 1, Name = "Green Development Marketer", Salary = 1000 },
+                        new { Id = 2, CategoryId = 1, CompanyId = 2, Deadline = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), DemandId = 2, Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam. Sed tempor iaculis massa faucibus feugiat. In fermentum facilisis massa, a consequat purus viverra a. Aliquam pellentesque nibh et nibh feugiat gravida. Maecenas ultricies, diam vitae semper placerat, velit risus accumsan nisl, eget tempor lacus est vel nunc. Proin accumsan elit sed neque euismod fringilla. Curabitur lobortis nunc velit, et fermentum urna dapibus non. Vivamus magna lorem, elementum id gravida ac, laoreet tristique augue. Maecenas dictum lacus eu nunc porttitor, ut hendrerit arcu efficitur.", Experience = "2-3", LocationId = 2, Name = "Restaurant General Manager", Salary = 1500 }
+                    );
+                });
+
+            modelBuilder.Entity("FinalProject.Models.Link", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Controller");
+
+                    b.Property<string>("Icon");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Links");
+
+                    b.HasData(
+                        new { Id = 1, Controller = "Dasboard", Icon = "<i class='fas fa-tachometer-alt'></i>", Name = "Dashboard" },
+                        new { Id = 2, Controller = "Dashboard", Icon = "<i class='fas fa-plus'></i>", Name = "Post a New Job" },
+                        new { Id = 3, Controller = "Candidate", Icon = "<i class='fas fa-user-check'></i>", Name = "Manage Candidate" },
+                        new { Id = 4, Controller = "Job", Icon = "<i class='fas fa-briefcase'></i>", Name = "Manage Jobs" },
+                        new { Id = 5, Controller = "Blog", Icon = "<i class='fas fa-blog'></i>", Name = "Manage Blogs" },
+                        new { Id = 6, Controller = "Message", Icon = "<i class='far fa-envelope'></i>", Name = "Message" },
+                        new { Id = 7, Controller = "Profile", Icon = "<i class='fas fa-user-edit'></i>", Name = "Edit Profile" },
+                        new { Id = 8, Controller = "Logout", Icon = "<i class='fas fa-sign-out-alt'></i>", Name = "Logout" }
                     );
                 });
 
@@ -217,6 +439,35 @@ namespace FinalProject.Migrations
                     );
                 });
 
+            modelBuilder.Entity("FinalProject.Models.Candidate", b =>
+                {
+                    b.HasOne("FinalProject.Models.Candidate_Skill", "Candidate_Skill")
+                        .WithMany()
+                        .HasForeignKey("Candidate_SkillId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("FinalProject.Models.Location", "Location")
+                        .WithMany("Candidates")
+                        .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("FinalProject.Models.Candidate_Education", b =>
+                {
+                    b.HasOne("FinalProject.Models.Candidate", "Candidate")
+                        .WithMany("Candidate_Education")
+                        .HasForeignKey("CandidateId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("FinalProject.Models.Candidate_Experience", b =>
+                {
+                    b.HasOne("FinalProject.Models.Candidate", "Candidate")
+                        .WithMany("Candidate_Experience")
+                        .HasForeignKey("CandidateId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("FinalProject.Models.Job", b =>
                 {
                     b.HasOne("FinalProject.Models.Category", "Category")
@@ -227,6 +478,11 @@ namespace FinalProject.Migrations
                     b.HasOne("FinalProject.Models.Company", "Company")
                         .WithMany("Jobs")
                         .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("FinalProject.Models.Demand", "Demand")
+                        .WithMany()
+                        .HasForeignKey("DemandId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("FinalProject.Models.Location", "Location")

@@ -89,7 +89,7 @@ header{
     width: 100%;
     border-bottom: 1px solid rgba(220, 220, 220, 0.2);
     box-shadow: 0 0 8px 0 rgba(0,0,0,.12);
-    padding: 30px 0 0 0;
+    padding: 30px 0 15px 0;
 }
 .navbarList ul{
     display: flex;
@@ -468,7 +468,12 @@ footer .sosial ul li{
     margin: 10px;
     font-size: 14px;
 }
-
+.job .name a{
+    color:#535353;
+}
+.job .name a:hover{
+    color:#376bff;
+}
 .favorite{
     border-radius: 50%;
     width: 40px;
@@ -759,8 +764,15 @@ footer .sosial ul li{
 .candidates .btn-resume:hover{
     background-color: #007bff;
 }
-
-.pagination{
+.candidate .about span{
+    margin-right:10px;
+    color:#535353;
+}
+.candidate .about i,.employer .about i {
+    margin-right: 3px;
+    color: #535353;
+}
+.pagination {
     text-align: center;
     width: 220px;
     margin: 20px auto;

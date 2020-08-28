@@ -11,6 +11,18 @@
     <Compile Remove="Migrations\20200826170300_addBlogTable.Designer.cs" />
     <Compile Remove="Migrations\20200826175001_addServiceTable.cs" />
     <Compile Remove="Migrations\20200826175001_addServiceTable.Designer.cs" />
+    <Compile Remove="Migrations\20200827161935_CandidateTableRestruct.cs" />
+    <Compile Remove="Migrations\20200827161935_CandidateTableRestruct.Designer.cs" />
+    <Compile Remove="Migrations\20200827162203_CandidateTableRestruct.cs" />
+    <Compile Remove="Migrations\20200827162203_CandidateTableRestruct.Designer.cs" />
+    <Compile Remove="Migrations\20200827162528_CandidateTableRestruct.cs" />
+    <Compile Remove="Migrations\20200827162528_CandidateTableRestruct.Designer.cs" />
+    <Compile Remove="Migrations\20200827185547_AddDemandTableForJob.cs" />
+    <Compile Remove="Migrations\20200827185547_AddDemandTableForJob.Designer.cs" />
+    <Compile Remove="Migrations\20200827191811_AddDemandTableForJob.cs" />
+    <Compile Remove="Migrations\20200827191811_AddDemandTableForJob.Designer.cs" />
+    <Compile Remove="Migrations\20200827192236_AddDemandTableForJob.cs" />
+    <Compile Remove="Migrations\20200827192236_AddDemandTableForJob.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

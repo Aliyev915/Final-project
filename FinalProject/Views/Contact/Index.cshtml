@@ -1,4 +1,4 @@
-﻿
+﻿@model Bio
 @{
     ViewData["Title"] = "Index";
 }
@@ -24,7 +24,7 @@
                             <h4>Office Adress</h4>
                         </div>
                         <div class="contact-text">
-                            <p>20/F Green Road, Dhaka</p>
+                            <p>@Model.Address</p>
                         </div>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                             <h4>Phone</h4>
                         </div>
                         <div class="contact-text">
-                            <p>+55 417 634 7071</p>
+                            <p>@Model.Phone</p>
                         </div>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                             <h4>Email Adress</h4>
                         </div>
                         <div class="contact-text">
-                            <p>info@themevessel.com</p>
+                            <p>@Model.Email</p>
                         </div>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
                             <h4>Web</h4>
                         </div>
                         <div class="contact-text">
-                            <p>info@themevessel.com</p>
+                            <p>@Model.Web</p>
                         </div>
                     </div>
                 </div>

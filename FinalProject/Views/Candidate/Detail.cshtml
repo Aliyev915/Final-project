@@ -1,4 +1,4 @@
-﻿
+﻿@model Candidate
 @{
     ViewData["Title"] = "Detail";
 }
@@ -13,16 +13,16 @@
                         <div class="row">
                             <div class="col-2">
                                 <div class="image">
-                                    <img src="~/img/avatar/avatar-1.jpg" alt="">
+                                    <img src="~/img/avatar/@Model.Image" alt="">
                                 </div>
                             </div>
                             <div class="col-10">
                                 <div class="info">
                                     <div class="name">
-                                        Martin Smith
+                                        @Model.Fullname
                                     </div>
-                                    <span><i class="far fa-check-circle"></i> Writer</span>
-                                    <span><i class="fas fa-map-marker-alt"></i> New York City</span>
+                                    <span><i class="far fa-check-circle"></i> @Model.Profession</span>
+                                    <span><i class="fas fa-map-marker-alt"></i> @Model.Location.Name</span>
                                 </div>
                             </div>
                         </div>
@@ -30,172 +30,90 @@
                     <div class="candidate-about">
                         <h3>About Me</h3>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque.
-                            Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae
-                            lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis
-                            fringilla diam sed aliquam. Sed tempor iaculis massa faucibus feugiat. In fermentum
-                            facilisis massa, a consequat purus viverra a. Aliquam pellentesque nibh et nibh feugiat
-                            gravida. Maecenas ultricies, diam vitae semper placerat, velit risus accumsan nisl, eget
-                            tempor lacus est vel nunc. Proin accumsan elit sed neque euismod fringilla. Curabitur
-                            lobortis nunc velit, et fermentum urna dapibus non. Vivamus magna lorem, elementum id
-                            gravida ac, laoreet tristique augue. Maecenas dictum lacus eu nunc porttitor, ut
-                            hendrerit arcu efficitur.
+                            @Model.About
                         </p>
                     </div>
                     <div class="candidate-education">
                         <h3>Education</h3>
-                        <div class="row my-5">
-                            <div class="col-2">
-                                <div class="icon">
-                                    <i class="fas fa-graduation-cap"></i>
+                        @foreach (Candidate_Education item in Model.Candidate_Education)
+                        {
+                            <div class="row my-5">
+                                <div class="col-2">
+                                    <div class="icon">
+                                        <i class="fas fa-graduation-cap"></i>
+                                    </div>
+                                </div>
+                                <div class="col-10">
+                                    <div class="speciality">
+                                        <p>@item.School</p>
+                                        <p>/ @item.Speciality</p>
+                                    </div>
+                                    <div class="year ">
+                                        <p>@item.EducationYear</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-10">
-                                <div class="speciality">
-                                    <p>Web Designer</p>
-                                    <p>/ themeforest</p>
-                                </div>
-                                <div class="year ">
-                                    <p>2015-2019</p>
-                                </div>
-                                <div class="description">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus tincidunt
-                                    aliquam. Aliquam gravida massa at sem vulputate interdum.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row my-3">
-                            <div class="col-2">
-                                <div class="icon">
-                                    <i class="fas fa-graduation-cap"></i>
-                                </div>
-                            </div>
-                            <div class="col-10">
-                                <div class="speciality">
-                                    <p>Graghic Designer</p>
-                                    <p>/ themeforest</p>
-                                </div>
-                                <div class="year">
-                                    <p>2019-</p>
-                                </div>
-                                <div class="description">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus tincidunt
-                                    aliquam. Aliquam gravida massa at sem vulputate interdum.
-                                </div>
-                            </div>
-                        </div>
+                        }
                     </div>
                     <div class="candidate-experience">
                         <h3>Work Experience</h3>
-                        <div class="row my-5">
-                            <div class="col-2">
-                                <div class="icon">
-                                    <i class="fas fa-briefcase"></i>
+                        @foreach (Candidate_Experience item in Model.Candidate_Experience)
+                        {
+                            <div class="row my-5">
+                                <div class="col-2">
+                                    <div class="icon">
+                                        <i class="fas fa-briefcase"></i>
+                                    </div>
+                                </div>
+                                <div class="col-10">
+                                    <div class="speciality">
+                                        <p>@item.Company</p>
+                                        <p>/ @item.Speciality</p>
+                                    </div>
+                                    <div class="year ">
+                                        <p>@item.ExperienceYear</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-10">
-                                <div class="speciality">
-                                    <p>Dhaka College</p>
-                                    <p>/ Economics</p>
-                                </div>
-                                <div class="year ">
-                                    <p>2015-2019</p>
-                                </div>
-                                <div class="description">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus tincidunt
-                                    aliquam. Aliquam gravida massa at sem vulputate interdum.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row my-3">
-                            <div class="col-2">
-                                <div class="icon">
-                                    <i class="fas fa-briefcase"></i>
-                                </div>
-                            </div>
-                            <div class="col-10">
-                                <div class="speciality">
-                                    <p> University of south asia</p>
-                                    <p>/ Computer Science</p>
-                                </div>
-                                <div class="year">
-                                    <p>2019-</p>
-                                </div>
-                                <div class="description">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus tincidunt
-                                    aliquam. Aliquam gravida massa at sem vulputate interdum.
-                                </div>
-                            </div>
-                        </div>
+                        }
                     </div>
                     <div class="candidate-skill">
                         <h3>Professional Skills</h3>
                         <div class="skill my-3">
                             <div class="row justify-content-between px-3">
-                                <p>Web Development</p>
-                                <p>80%</p>
+                                <p>Community</p>
+                                <p>@Model.Candidate_Skill.Community%</p>
                             </div>
                             <div class="bar">
-                                <div class="progress-skill" style="width: 80%;"></div>
+                                <div class="progress-skill" style="width: @Model.Candidate_Skill.Community%;"></div>
                             </div>
                         </div>
                         <div class="skill my-3">
                             <div class="row justify-content-between px-3">
-                                <p>Consulting</p>
-                                <p>100%</p>
+                                <p>Speciality</p>
+                                <p>@Model.Candidate_Skill.Speciality%</p>
                             </div>
                             <div class="bar">
-                                <div class="progress-skill" style="width: 100%;"></div>
+                                <div class="progress-skill" style="width: @Model.Candidate_Skill.Speciality%;"></div>
                             </div>
                         </div>
                         <div class="skill my-3">
                             <div class="row justify-content-between px-3">
-                                <p>Branding & Identity</p>
-                                <p>70%</p>
+                                <p>Language</p>
+                                <p>@Model.Candidate_Skill.Language%</p>
                             </div>
                             <div class="bar">
-                                <div class="progress-skill" style="width: 70%;"></div>
+                                <div class="progress-skill" style="width: @Model.Candidate_Skill.Language%;"></div>
                             </div>
                         </div>
                         <div class="skill my-3">
                             <div class="row justify-content-between px-3">
-                                <p>Graghic Design</p>
-                                <p>90%</p>
+                                <p>LeaderShip</p>
+                                <p>@Model.Candidate_Skill.LeaderShip%</p>
                             </div>
                             <div class="bar">
-                                <div class="progress-skill" style="width: 90%;"></div>
+                                <div class="progress-skill" style="width: @Model.Candidate_Skill.LeaderShip%;"></div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="candidate-portfolio">
-                        <h3>Portfolio</h3>
-                        <div class="row owl-carousel owl-theme">
-                            <div class="portfolio">
-                                <div class="image">
-                                    <img src="~/img/gallery/img-1.jpg" alt="">
-                                </div>
-                            </div>
-                            <div class="portfolio">
-                                <div class="image">
-                                    <img src="~/img/gallery/img-2.jpg" alt="">
-                                </div>
-                            </div>
-                            <div class="portfolio">
-                                <div class="image">
-                                    <img src="~/img/gallery/img-3.jpg" alt="">
-                                </div>
-                            </div>
-                            <div class="portfolio">
-                                <div class="image">
-                                    <img src="~/img/gallery/img-4.jpg" alt="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="icons left">
-                            <i class="fas fa-angle-left"></i>
-                        </div>
-                        <div class="icons right">
-                            <i class="fas fa-angle-right"></i>
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,4 @@
-﻿
+﻿@model Company
 @{
     ViewData["Title"] = "Detail";
 }
@@ -13,16 +13,15 @@
                         <div class="row">
                             <div class="col-2">
                                 <div class="image">
-                                    <img src="~/img/company-logo/logo-1.png" alt="">
+                                    <img src="~/img/company-logo/@Model.Logo" alt="">
                                 </div>
                             </div>
                             <div class="col-10">
                                 <div class="info">
                                     <div class="name">
-                                        Dhaka Event Support Specialist
+                                        @Model.Name
                                     </div>
-                                    <span><i class="fas fa-briefcase"></i> Xero</span>
-                                    <span><i class="fas fa-map-marker-alt"></i> New York City</span>
+                                    <span><i class="fas fa-map-marker-alt"></i>@Model.Adress</span>
                                 </div>
                             </div>
                         </div>
@@ -30,141 +29,54 @@
                     <div class="employer-about">
                         <h3>About Me</h3>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque.
-                            Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae
-                            lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis
-                            fringilla diam sed aliquam. Sed tempor iaculis massa faucibus feugiat. In fermentum
-                            facilisis massa, a consequat purus viverra a. Aliquam pellentesque nibh et nibh feugiat
-                            gravida. Maecenas ultricies, diam vitae semper placerat, velit risus accumsan nisl, eget
-                            tempor lacus est vel nunc. Proin accumsan elit sed neque euismod fringilla. Curabitur
-                            lobortis nunc velit, et fermentum urna dapibus non. Vivamus magna lorem, elementum id
-                            gravida ac, laoreet tristique augue. Maecenas dictum lacus eu nunc porttitor, ut
-                            hendrerit arcu efficitur.
-                        </p>
-                        <ul>
-                            <li>
-                                <i class="fas fa-check"></i>
-                                Cross-browser and platform testing as standard practice
-                            </li>
-                            <li>
-                                <i class="fas fa-check"></i>
-                                Experience using Invision a plus
-                            </li>
-                            <li>
-                                <i class="fas fa-check"></i>
-                                Experience in video production a plus or, at a minimum, a willingness to learn
-                            </li>
-                        </ul>
-                        <p>
-                            Repeatedly dreamed alas opossum but dramatically despite expeditiously that jeepers
-                            loosely yikes that as or eel underneath kept and slept compactly far purred sure
-                            abidingly up above fitting to strident wiped set waywardly far the and pangolin.
+                            @Model.About
                         </p>
                     </div>
                     <div class="related-job">
+                        <h3>Related Jobs</h3>
                         <div class="job-list">
-                            <div class="job-about">
-                                <div class="row">
-                                    <div class="col-lg-2 col-sm-4">
-                                        <div class="company-logo">
-                                            <img src="~/img/company-logo/logo-1.png" alt="logo">
+                            @foreach (Job item in ViewBag.Jobs)
+                            {
+                                <div class="job-about">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-sm-4">
+                                            <div class="company-logo">
+                                                <img src="~/img/company-logo/@item.Company.Logo" alt="logo">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-6 col-sm">
-                                        <div class="name">
-                                            <h5>Restaurant General Manager</h5>
+                                        <div class="col-lg-6 col-sm">
+                                            <div class="name">
+                                                <h5>@item.Name</h5>
+                                            </div>
+                                            <div class="add-info">
+                                                <div class="row">
+                                                    <p><i class="fas fa-briefcase"></i>@item.Category.Name</p>
+                                                    <p><i class="fas fa-map-marker-alt"></i>@item.Location.Name</p>
+                                                    <p><i class="far fa-clock"></i> Full Time</p>
+                                                </div>
+                                            </div>
+                                            <div class="deadline">
+                                                <p>Deadline: 
+                                                    @item.Deadline.ToString("MMMM").Substring(0,3) @item.Deadline.Day, @item.Deadline.Year                                                
+                                                </p>
+                                            </div>
                                         </div>
-                                        <div class="add-info">
+                                        <div class="col-lg-4">
                                             <div class="row">
-                                                <p><i class="fas fa-briefcase"></i> Hotel</p>
-                                                <p><i class="fas fa-map-marker-alt"></i> New York City</p>
-                                                <p><i class="far fa-clock"></i> Full Time</p>
-                                            </div>
-                                        </div>
-                                        <div class="deadline">
-                                            <p>Deadline: Jan 31, 2019</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="row">
-                                            <div class="favorite">
-                                                <i class="far fa-heart"></i>
-                                            </div>
-                                            <div class="apply">
-                                                <a href="" class="btn-apply">Apply Now</a>
+                                                <div class="favorite">
+                                                    <i class="far fa-heart"></i>
+                                                </div>
+                                                <div class="apply">
+                                                    <a asp-controller="Job" asp-action="Detail" asp-route-Id="@item.Id" class="btn-apply">
+                                                        Apply Now
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="job-about">
-                                <div class="row">
-                                    <div class="col-lg-2 col-sm-4">
-                                        <div class="company-logo">
-                                            <img src="~/img/company-logo/logo-2.png" alt="logo">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-sm">
-                                        <div class="name">
-                                            <h5>Marketing Director</h5>
-                                        </div>
-                                        <div class="add-info">
-                                            <div class="row">
-                                                <p><i class="fas fa-briefcase"></i> Red</p>
-                                                <p><i class="fas fa-map-marker-alt"></i> New York City</p>
-                                                <p><i class="far fa-clock"></i> Part Time</p>
-                                            </div>
-                                        </div>
-                                        <div class="deadline">
-                                            <p>Deadline: Jan 31, 2019</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="row">
-                                            <div class="favorite">
-                                                <i class="far fa-heart"></i>
-                                            </div>
-                                            <div class="apply">
-                                                <a href="" class="btn-apply">Apply Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="job-about">
-                                <div class="row">
-                                    <div class="col-lg-2 col-sm-4">
-                                        <div class="company-logo">
-                                            <img src="~/img/company-logo/logo-3.png" alt="logo">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-sm">
-                                        <div class="name">
-                                            <h5>Dhaka Event Support Specialist</h5>
-                                        </div>
-                                        <div class="add-info">
-                                            <div class="row">
-                                                <p><i class="fas fa-briefcase"></i> Xero</p>
-                                                <p><i class="fas fa-map-marker-alt"></i> New York City</p>
-                                                <p><i class="far fa-clock"></i> Temporary</p>
-                                            </div>
-                                        </div>
-                                        <div class="deadline">
-                                            <p>Deadline: Jan 31, 2019</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="row">
-                                            <div class="favorite">
-                                                <i class="far fa-heart"></i>
-                                            </div>
-                                            <div class="apply">
-                                                <a href="" class="btn-apply">Apply Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            }
+
                         </div>
                     </div>
                 </div>
@@ -173,7 +85,7 @@
                 <div class="right-section">
                     <div class="download">
                         <button class="btn-download">
-                            7 open positions
+                            @Model.Jobs.Where(j => j.CompanyId == Model.Id).Count() open positions
                         </button>
                     </div>
                     <div class="save">
@@ -208,7 +120,7 @@
                                 </div>
                                 <div class="col-9">
                                     <h5 style="font-weight: bold;">Location</h5>
-                                    <p>New York City</p>
+                                    <p>Baku</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -218,15 +130,6 @@
                                 <div class="col-9">
                                     <h5 style="font-weight: bold;">Followers</h5>
                                     <p>14</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-3">
-                                    <i class="fab fa-artstation"></i>
-                                </div>
-                                <div class="col-9">
-                                    <h5 style="font-weight: bold;">Categories</h5>
-                                    <p>Art Design Media</p>
                                 </div>
                             </div>
                         </div>
