@@ -20,5 +20,6 @@ namespace FinalProject.Models
         [Required, StringLength(500)]
         public string Brand { get; set; }
         public virtual ICollection<Job> Jobs { get; set; }
+        public ICollection<CompanyModerator> CompanyModerators { get; set; }
     }
 }

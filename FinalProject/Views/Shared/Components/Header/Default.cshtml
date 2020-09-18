@@ -38,12 +38,38 @@
                     <li>
                         <a asp-controller="Contact" asp-action="Index">Contact Us</a>
                     </li>
-                    <li>
-                        <a asp-controller="Account" asp-action="Login"><i class="fas fa-sign-out-alt mr-2"></i> Sign In</a>
-                    </li>
-                    <li>
-                        <a asp-area="Admin" asp-controller="Dashboard" asp-action="Post"><i class="fas fa-plus mr-2"></i> Post a Job</a>
-                    </li>
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <li>
+                            <a asp-controller="Account" asp-action="Login"><i class="fas fa-sign-out-alt mr-2"></i> Sign In</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>@ViewBag.User</li>
+                        <li>
+                            <a asp-controller="Account" asp-action="Logout"><i class="fas fa-sign-out-alt mr-2"></i>Logout</a>
+                        </li>
+                    }
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            if (ViewBag.Role == "Moderator")
+                            {
+                                <div class="addPost">
+                                    <a asp-area="Admin" asp-controller="Post" asp-action="Create" class="btnPost"> Post a Job</a>
+                                </div>
+                            }
+                            if (ViewBag.Role == "User")
+                            {
+                                <div class="addPost">
+                                    <a asp-controller="Candidate" asp-action="Create" class="btnPost">Add Resume</a>
+                                </div>
+                            }
+                        }
+
+                    }
                 </ul>
             </div>
         </div>
@@ -80,11 +106,30 @@
                     </div>
                     <div class="col-3 d-flex">
                         <div class="SignIn">
-                            <a asp-controller="Account" asp-action="Login"><i class="fas fa-sign-out-alt"></i> Sign In</a>
+                            @if (!User.Identity.IsAuthenticated)
+                            {
+                                <a asp-controller="Account" asp-action="Login"><i class="fas fa-sign-out-alt"></i> Sign In</a>
+                            }
+                            else
+                            {
+                                <a asp-controller="Account" asp-action="Logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                            }
                         </div>
-                        <div class="addPost">
-                            <a asp-area="Admin" asp-controller="Dashboard" asp-action="Post" class="btnPost"> Post a Job</a>
-                        </div>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            if (ViewBag.Role == "Moderator")
+                            {
+                                <div class="addPost">
+                                    <a asp-area="Admin" asp-controller="Post" asp-action="Create" class="btnPost"> Post a Job</a>
+                                </div>
+                            }
+                            if (ViewBag.Role == "User")
+                            {
+                                <div class="addPost">
+                                    <a asp-controller="Candidate" asp-action="Create" class="btnPost">Add Resume</a>
+                                </div>
+                            }
+                        }
                     </div>
                 </div>
             </div>
@@ -124,11 +169,31 @@
                     </div>
                     <div class="col-3 d-flex">
                         <div class="SignIn">
-                            <a asp-controller="Account" asp-action="Login"><i class="fas fa-sign-out-alt"></i> Sign In</a>
+                            @if (!User.Identity.IsAuthenticated)
+                            {
+                                <a asp-controller="Account" asp-action="Login"><i class="fas fa-sign-out-alt"></i> Sign In</a>
+                            }
+                            else
+                            {
+                                <a asp-controller="Account" asp-action="Logout"><i class="fas fa-sign-out-alt"></i>Logout</a>
+                            }
                         </div>
-                        <div class="addPost">
-                            <a asp-area="Admin" asp-controller="Dashboard" asp-action="Post" class="btnPost"> Post a Job</a>
-                        </div>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            if (ViewBag.Role == "Moderator")
+                            {
+                                <div class="addPost">
+                                    <a asp-area="Admin" asp-controller="Post" asp-action="Create" class="btnPost"> Post a Job</a>
+                                </div>
+                            }
+                            if (ViewBag.Role == "User")
+                            {
+                                <div class="addPost">
+                                    <a asp-controller="Candidate" asp-action="Create" class="btnPost">Add Resume</a>
+                                </div>
+                            }
+                        }
+
                     </div>
                 </div>
             </div>

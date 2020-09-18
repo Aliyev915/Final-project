@@ -55,6 +55,22 @@ li{
 }
 /* back to top */
 
+/* Select2 */
+.select2-selection--single{
+    height:48px !important;
+    padding:10px 0;
+    margin:15px 0;
+    border:1px solid #e6e6e6 !important;
+}
+.select2-selection__arrow{
+    top:25px !important;
+    right:10px !important;
+}
+.select2-selection__arrow b{
+    border-width:9px 5px 0 5px !important;
+}
+/* Select 2*/
+
 /* Responsive Start */
 @media screen and (max-width:992px){
     .navbar{
@@ -454,29 +470,33 @@ label{
 
 .down{
     position: absolute;
-    top: 60%;
+    top: 55%;
     left: 92%;
     color: #535353;
 }
-.selectList{
-    padding: 0 30px 0 0;
+.selectList {
     margin: 0;
     position: absolute;
-    width: 100%;
+    width: 94%;
     z-index: 20;
+    top: 85%;
     display: none;
     background-color: #fff;
 }
-.selectList ul{
-    width: 100%;
-    border: 1px solid #e6e6e6;
-}
-.selectList ul li{
-    width: 100%;
-    padding: 5px 10px;
-}
+    .selectList ul {
+        width: 100%;
+        border-radius:5px;
+        border: 1px solid #e6e6e6;
+    }
+    .selectList ul li {
+        width: 100%;
+        padding: 10px 20px;
+        font-size:14px;
+        border-bottom: 1px solid #e6e6e6;
+    }
 .selectList ul li:hover{
-    background-image: linear-gradient(to left, #2c5ce4,#007bff);
+    background-image: linear-gradient(to right, #2c5ce4,#007bff);
+    color:#fff;
 }
 
 .post textarea{
@@ -629,14 +649,20 @@ label{
     position: absolute;
     top: 20px;
     right: 5%;
+    width:40px;
+    height:40px;
+    border-radius:50%;
     cursor: pointer;
 }
-.kebab-menu div{
+.kebab-menu:hover{
+    background-color:rgba(0,0,0,0.14);
+}
+.kebab-menu div {
     width: 5px;
     height: 5px;
     background-color: #535353;
     border-radius: 50%;
-    margin: 5px 0;
+    margin: 5px 17px;
 }
 .menu-item{
     display: none;
@@ -693,3 +719,47 @@ label{
     z-index: 10;
 }
 /* Edit Profile End */
+
+/* Delete Image */
+.basic-info .image .delete {
+    display:none;
+    position: absolute;
+    width: 24px;
+    z-index: 50;
+    top: -2px;
+    right: -1px;
+    height: 24px;
+    text-align: center;
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 50%;
+    color: #fff;
+    cursor:pointer;
+}
+.basic-info .fa-times{
+    font-size:14px;
+}
+/* Delete Image */
+
+.converter {
+    display: flex;
+    justify-content:space-between;
+}
+.general-info .converter{
+    justify-content:flex-end;
+}
+.next-section, .prev-section {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 25px;
+    text-align: center;
+    background-color: aquamarine;
+    cursor: pointer;
+}
+.next-section{
+    justify-content:flex-end;
+}
+.fa-arrow-left,.fa-arrow-right{
+    vertical-align:bottom;
+}

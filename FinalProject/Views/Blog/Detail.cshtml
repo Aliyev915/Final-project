@@ -1,4 +1,4 @@
-﻿@model Blog
+﻿@model BlogDetailVM
 @{
     ViewData["Title"] = "Detail";
 }
@@ -11,28 +11,25 @@
                 <div class="container">
                     <div class="blog-wrapper">
                         <div class="blog-image">
-                            <img src="~/img/blog/@Model.Image" alt="">
+                            <img src="~/img/blog/@Model.Blog.Image" alt="">
                         </div>
                         <div class="blog-title">
-                            <h3>@Model.Title</h3>
+                            <h3>@Model.Blog.Title</h3>
                         </div>
                         <div class="blog-description">
-                            <p>@Model.Description</p>
+                            <p>@Model.Blog.Description</p>
                         </div>
                         <div class="add-info">
                             <div class="row justify-content-between">
                                 <div class="tags">
                                     <div class="tagList">
                                         <span>Tags</span>
-                                        <div class="tag">
-                                            <a href="">Features</a>
-                                        </div>
-                                        <div class="tag">
-                                            <a href="">Gallery</a>
-                                        </div>
-                                        <div class="tag">
-                                            <a href="">Slideshow</a>
-                                        </div>
+                                        @foreach (BlogTag item in ViewBag.BlogTags)
+                                        {
+                                            <div class="tag">
+                                                <a href="">@item.Tag.Name</a>
+                                            </div>
+                                        }
                                     </div>
                                 </div>
                                 <div class="sosial">
@@ -57,111 +54,45 @@
                         </div>
                     </div>
                     <div class="comment-area">
+                        @{
+                            AppUser user = ViewBag.User;
+                        }
                         <h3>Comments Section</h3>
-                        <div class="comment">
-                            <div class="row">
-                                <div class="col-2">
-                                    <div class="user">
-                                        <img src="~/img/avatar/avatar-1.jpg" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-10">
-                                    <div class="comment-message">
-                                        <div class="username">Maikel Alisa</div>
-                                        <div class="datetime">
-                                            <span style="margin-right: 20px;">8:42 PM 11/28/2018</span>
-                                            <span style="color: #376bff; font-weight: bold; cursor: pointer">Reply</span>
-                                        </div>
-                                        <div class="message">
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus
-                                                tincidunt aliquam. Aliquam gravida massa at sem vulputate interdum
-                                                et vel eros. Maecenas eros enim, tincidunt vel turpis vel, dapibus
-                                                tempus nulla.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="reply offset-2">
-                                <div class="row">
-                                    <div class="col-2">
-                                        <div class="user">
-                                            <img src="~/img/avatar/avatar-2.jpg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="col-10">
-                                        <div class="comment-message">
-                                            <div class="username">Karen Paran</div>
-                                            <div class="datetime">
-                                                <span style="margin-right: 20px;">8:42 PM 11/28/2018</span>
-                                                <span style="color: #376bff; font-weight: bold; cursor: pointer">Reply</span>
-                                            </div>
-                                            <div class="message">
-                                                <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                                                    luctus tincidunt aliquam. Aliquam gravida massa at sem vulputate
-                                                    interdum et vel eros. Maecenas eros enim, tincidunt vel turpis
-                                                    vel, dapibus tempus nulla.
-                                                </p>
+                        <form method="post">
+                            @foreach (Comment item in ViewBag.Comments)
+                            {
+                                <div class="comment">
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <div class="user">
+                                                @if (user.Image != null)
+                                                {
+                                                    <img src="~/img/avatar/@user.Image" alt="">
+                                                }
+                                                else
+                                                {
+                                                    <img src="~/img/user.png" alt="">
+                                                }
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="comment">
-                            <div class="row">
-                                <div class="col-2">
-                                    <div class="user">
-                                        <img src="~/img/avatar/avatar-3.jpg" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-10">
-                                    <div class="comment-message">
-                                        <div class="username">Anne Brady</div>
-                                        <div class="datetime">
-                                            <span style="margin-right: 20px;">8:42 PM 11/28/2018</span>
-                                            <span style="color: #376bff; font-weight: bold; cursor: pointer">Reply</span>
-                                        </div>
-                                        <div class="message">
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus
-                                                tincidunt aliquam. Aliquam gravida massa at sem vulputate interdum
-                                                et vel eros. Maecenas eros enim, tincidunt vel turpis vel, dapibus
-                                                tempus nulla.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="reply offset-2">
-                                <div class="row">
-                                    <div class="col-2">
-                                        <div class="user">
-                                            <img src="~/img/avatar/avatar-4.jpg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="col-10">
-                                        <div class="comment-message">
-                                            <div class="username">Jane Doe</div>
-                                            <div class="datetime">
-                                                <span style="margin-right: 20px;">8:42 PM 11/28/2018</span>
-                                                <span style="color: #376bff; font-weight: bold; cursor: pointer">Reply</span>
+                                        <div class="col-10">
+                                            <div class="comment-message">
+                                                <div class="username">@item.AppUser.Fullname</div>
+                                                <div class="datetime">
+                                                    <span style="margin-right: 20px;">@item.Time.ToString("h:mm tt dd/MM/yyyy")</span>
+                                                    <span class="reply" style="color: #376bff; font-weight: bold; cursor: pointer">Reply</span>
+                                                </div>
+                                                <div class="message">
+                                                    <p>
+                                                        @item.Text
+                                                    </p>
+                                                </div>
                                             </div>
-                                            <div class="message">
-                                                <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                                                    luctus tincidunt aliquam. Aliquam gravida massa at sem vulputate
-                                                    interdum et vel eros. Maecenas eros enim, tincidunt vel turpis
-                                                    vel, dapibus tempus nulla.
-                                                </p>
-                                            </div>
+                                            <input type="hidden" asp-for="Reply" value="@item.Id" />
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                            }
                         <div class="leave-comment">
                             <div class="row">
                                 <div class="col-1">
@@ -171,7 +102,7 @@
                                 </div>
                                 <div class="col-10">
                                     <div class="form-group">
-                                        <textarea class="comment-input" placeholder="leave a comment"></textarea>
+                                        <textarea class="comment-input" asp-for="Message" placeholder="leave a comment"></textarea>
                                     </div>
                                 </div>
                                 <div class="send">
@@ -179,7 +110,8 @@
                                     <a href="" class="btn btn-send bg-light text-dark">Cancel</a>
                                 </div>
                             </div>
-                        </div>
+                        </div>                            
+                        </form>
                     </div>
                 </div>
             </div>
@@ -189,7 +121,7 @@
                         <div class="form-group search-input">
                             <h3>Search</h3>
                             <input type="text" class="form-control" placeholder="Search Keywords">
-                            <button><i class="fas fa-search"></i></button>
+                            <button style="top:75%; right:3%"><i class="fas fa-search"></i></button>
                         </div>
                     </form>
                     <div class="recent-post">
@@ -227,69 +159,25 @@
                     </div>
                     <div class="categoryList">
                         <h3>Categories</h3>
-                        <div class="category">
-                            <div class="row justify-content-between">
-                                <p>Information</p>
-                                <p>(45)</p>
+                        @foreach (BlogType item in ViewBag.Categories)
+                        {
+                            IEnumerable<Blog> blogs = ViewBag.BlogCount;
+                            <div class="category">
+                                <div class="row justify-content-between">
+                                    <p>@item.Type</p>
+                                    <p>(@blogs.Where(b => b.BlogTypeId == item.Id).Count())</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="category">
-                            <div class="row justify-content-between">
-                                <p>Jobs</p>
-                                <p>(21)</p>
-                            </div>
-                        </div>
-                        <div class="category">
-                            <div class="row justify-content-between">
-                                <p>Education</p>
-                                <p>(18)</p>
-                            </div>
-                        </div>
-                        <div class="category">
-                            <div class="row justify-content-between">
-                                <p>Skill</p>
-                                <p>(32)</p>
-                            </div>
-                        </div>
-                        <div class="category">
-                            <div class="row justify-content-between">
-                                <p>Learn</p>
-                                <p>(9)</p>
-                            </div>
-                        </div>
-                        <div class="category">
-                            <div class="row justify-content-between">
-                                <p>Other</p>
-                                <p>(22)</p>
-                            </div>
-                        </div>
+                        }
                     </div>
                     <div class="tagList">
                         <h3>Tags</h3>
-                        <div class="tag">
-                            <a href="">Image</a>
-                        </div>
-                        <div class="tag">
-                            <a href="">Features</a>
-                        </div>
-                        <div class="tag">
-                            <a href="">Gallery</a>
-                        </div>
-                        <div class="tag">
-                            <a href="">Slideshow</a>
-                        </div>
-                        <div class="tag">
-                            <a href="">Post Formats</a>
-                        </div>
-                        <div class="tag">
-                            <a href="">Typography</a>
-                        </div>
-                        <div class="tag">
-                            <a href="">Best Sellers</a>
-                        </div>
-                        <div class="tag">
-                            <a href="">Woo Commerce</a>
-                        </div>
+                        @foreach (Tag item in ViewBag.Tags)
+                        {
+                            <div class="tag">
+                                <a asp-action="TagSearch" asp-route-Tag="@item.Name">@item.Name</a>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>

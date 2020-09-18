@@ -1,4 +1,4 @@
-﻿@model Bio
+﻿@model MessageVM
 @{
     ViewData["Title"] = "Index";
 }
@@ -24,7 +24,7 @@
                             <h4>Office Adress</h4>
                         </div>
                         <div class="contact-text">
-                            <p>@Model.Address</p>
+                            <p>@Model.Bio.Address</p>
                         </div>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                             <h4>Phone</h4>
                         </div>
                         <div class="contact-text">
-                            <p>@Model.Phone</p>
+                            <p>@Model.Bio.Phone</p>
                         </div>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                             <h4>Email Adress</h4>
                         </div>
                         <div class="contact-text">
-                            <p>@Model.Email</p>
+                            <p>@Model.Bio.Email</p>
                         </div>
                     </div>
                 </div>
@@ -63,36 +63,18 @@
                             <h4>Web</h4>
                         </div>
                         <div class="contact-text">
-                            <p>@Model.Web</p>
+                            <p>@Model.Bio.Web</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <form action="" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Name">
-                            </div>
-                            <div class="form-group">
-                                <input type="email" class="form-control" placeholder="Email">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Subject">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Number">
-                            </div>
-                        </div>
-                    </div>
-                    <textarea placeholder="Write message" rows="10" class="form-control"></textarea>
+                    <textarea placeholder="Write message" rows="10" asp-for="Text" class="form-control"></textarea>
                     <button class="btn-send">Send Message</button>
                 </div>
                 <div class="col-lg-4">

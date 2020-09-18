@@ -1,52 +1,41 @@
 ﻿@model AboutVM
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "About Us";
 }
 
 
-<!--about us section start  -->
-<div class="about-us">
+<!-- categories end -->
+<div class="categories">
     <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="slider">
-                    <div class="image">
-                        @foreach (Slider item in Model.Sliders)
-                        {
-                            <div class="item">
-                                <img src="img/gallery/@item.Image" alt="">
-                            </div>
-                        }
-                    </div>
-                    <div class="square-icon left-icon">
-                        <i class="fas fa-chevron-left"></i>
-                    </div>
-                    <div class="square-icon right-icon">
-                        <i class="fas fa-chevron-right"></i>
-                    </div>
-                </div>
+        <div class="content">
+            <div class="title">
+                <h2>Popular Categories</h2>
             </div>
-            <div class="col-md-6">
-                <div class="welcome">
-                    <h3>Welcome To Jobb</h3>
-                    <p>
-                        One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his
-                        bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a
-                        little he could see his brown belly
-                    </p>
-                    <p>
-                        transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he
-                        lifted. transformed in his bed into a horrible vermin. He lay on his armour-like back, and
-                        if he lifted.
-                    </p>
-                    <a href="" class="btn-send">Read More</a>
-                </div>
+            <div class="description">
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+            </div>
+        </div>
+        <div class="job-category">
+            <div class="row">
+                @foreach (Category item in Model.Categories)
+                {
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="icon">
+                            @Html.Raw(item.Icon)
+                        </div>
+                        <div class="name">
+                            @item.Name
+                        </div>
+                        <div class="count">
+                            (@item.Jobs.Count)
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     </div>
 </div>
-<!--about us section end  -->
-
+<!-- categories end -->
 <!-- Our Services start -->
 <div class="service-area">
     <div class="container">
@@ -87,9 +76,25 @@
             @foreach (Statistic item in Model.Statistics)
             {
                 <div class="col-lg-3 col-md-6">
-                    <div class="@item.Title">
+
+                    <div class="member">
                         @Html.Raw(item.Icon)
-                        <h1 class="counter text-white" data-to="@Convert.ToInt32(item.Id*100)">@Convert.ToInt32(item.Id * 100)</h1>
+                        @if (item.Title == "Members")
+                        {
+                            <h1 class="counter text-white" data-to="@ViewBag.UserCount"></h1>
+                        }
+                        @if (item.Title == "Jobs")
+                        {
+                            <h1 class="counter text-white" data-to="@ViewBag.JobCount"></h1>
+                        }
+                        @if (item.Title == "Resumes")
+                        {
+                            <h1 class="counter text-white" data-to="@ViewBag.ResumeCount"></h1>
+                        }
+                        @if (item.Title == "Companies")
+                        {
+                            <h1 class="counter text-white" data-to="@ViewBag.CompanyCount"></h1>
+                        }
                         <p class="text-white">@item.Title</p>
                     </div>
                 </div>
@@ -98,3 +103,26 @@
     </div>
 </div>
 <!-- statistics end -->
+
+<!-- partnership companies start -->
+<div class="partnership-company">
+    <div class="container">
+        <div class="content">
+            <div class="title">
+                <h2>Companies We've Helped</h2>
+            </div>
+            <div class="description">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+        </div>
+        <div class="row owl-carousel">
+            @foreach (Company item in Model.Companies)
+            {
+                <div class="brand">
+                    <img src="~/img/company-logo/@item.Logo" alt="">
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<!-- partnership companies end -->

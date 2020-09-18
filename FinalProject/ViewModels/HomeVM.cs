@@ -14,5 +14,7 @@ namespace FinalProject.ViewModels
         public IEnumerable<Location> Locations { get; set; }
         public IEnumerable<Statistic> Statistics { get; set; }
         public IEnumerable<Blog> Blogs { get; set; }
+        public string Search { get; set; }
+        public string Location { get; set; }
     }
 }

@@ -11,6 +11,7 @@
             <ul>
                 @for (int i = 0; i < Model.Length - 2; i++)
                 {
+                    string[] controller = Model[i].Controller.Split('/');
                     if (Model[i].Controller.Contains(ViewBag.Controller))
                     {
                             <li class="active-link">
@@ -39,22 +40,23 @@
         <div class="mainList">
             <ul>
                 @for (int i = Model.Length - 2; i < Model.Length; i++)
-                {
-                    if (Model[i].Controller.Contains(ViewBag.Controller))
-                    {
-                        if (ViewBag.Controller != "Account")
-                        {
-                            <li class="active-link">
-                                <a asp-area="Admin" asp-controller="@Model[i].Controller">
-                                    @Html.Raw(Model[i].Icon)
-                                    @Model[i].Name
-                                </a>
-                            </li>
+                 {
+                      string[] controller = Model[i].Controller.Split('/');
+                      if (Model[i].Controller.Contains(ViewBag.Controller))
+                      {
+                           if (ViewBag.Controller != "Account")
+                               {
+                               <li class="active-link">
+                                   <a asp-controller=@controller[0] asp-action=@controller[1]>
+                                        @Html.Raw(Model[i].Icon)
+                                        @Model[i].Name
+                                    </a>
+                               </li>
                         }
                         else
                         {
                             <li >
-                                <a asp-area="Admin" asp-controller="@Model[i].Controller">
+                                <a asp-controller=@controller[0] asp-action=@controller[1]>
                                     @Html.Raw(Model[i].Icon)
                                     @Model[i].Name
                                 </a>
@@ -63,12 +65,22 @@
                     }
                     else
                     {
-                        <li>
-                            <a asp-area="Admin" asp-controller="@Model[i].Controller">
-                                @Html.Raw(Model[i].Icon)
-                                @Model[i].Name
-                            </a>
-                        </li>
+            <li>
+                @if (controller[1] == "Logout")
+                {
+                    <a asp-area="" asp-controller=@controller[0] asp-action=@controller[1] asp-route-username="@User.Identity.Name">
+                        @Html.Raw(Model[i].Icon)
+                        @Model[i].Name
+                    </a>
+                }
+                else
+                {
+                <a asp-controller=@controller[0] asp-action=@controller[1] asp-route-username="@User.Identity.Name">
+                    @Html.Raw(Model[i].Icon)
+                    @Model[i].Name
+                </a>
+                }
+            </li>
                     }
                 }
             </ul>

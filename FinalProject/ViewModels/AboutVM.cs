@@ -11,5 +11,7 @@ namespace FinalProject.ViewModels
         public IEnumerable<Slider> Sliders { get; set; }
         public IEnumerable<Service> Services { get; set; }
         public IEnumerable<Statistic> Statistics { get; set; }
+        public IEnumerable<Category> Categories { get; set; }
+        public IEnumerable<Company> Companies { get; set; }
     }
 }

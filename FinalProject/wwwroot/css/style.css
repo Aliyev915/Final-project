@@ -146,7 +146,7 @@ header{
     display: inline-block;
     background-color: #007bff;
     padding: 10px 20px;
-    width: 120px;
+    width: 140px;
     color: #fff;
     font-size: 16px;
     margin: -10px 20px;
@@ -261,6 +261,8 @@ header{
 }
 .findJob{
     width: 150px;
+    display:inline-block;
+    text-align:center;
 }
 .search-icon{
     display: none;
@@ -491,6 +493,12 @@ footer .sosial ul li{
 }
 .fas.fa-heart{
     color: red;
+}
+.favorite .fa-heart{
+    display:none;
+}
+.favorite .fa-heart:nth-child(1){
+    display:inline-block;
 }
 
 .job-about .apply, .jobs .job .apply{
@@ -1381,5 +1389,44 @@ footer .sosial ul li{
     color: #535353;
 }
 /* contact page end */
+
+/* Select2 */
+.select2-selection--single {
+    height: 48px !important;
+    padding: 10px 0;
+    margin: 15px 0;
+    border: 1px solid #e6e6e6 !important;
+}
+
+.select2-selection__arrow {
+    top: 25px !important;
+    right: 10px !important;
+}
+
+    .select2-selection__arrow b {
+        border-width: 9px 5px 0 5px !important;
+    }
+/* Select 2*/
+
+.quick-contact form{
+    position:relative;
+}
+.quick-contact ul {
+    position: absolute;
+    z-index: 100;
+    background: #fff;
+    width: 100%;
+    box-shadow:0 0 5px rgba(0,0,0,0.14);
+    top:18%;
+}
+.quick-contact ul li {
+    border-bottom: 1px solid #f9f9f9;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+.quick-contact ul li:hover{
+    background-color:#007bff;
+    color:#fff;
+}
 
 /* END */

@@ -3,21 +3,21 @@
     ViewData["Title"] = "Index";
 }
 
+<input type="hidden" id="controller" value="@ViewContext.RouteData.Values["Controller"]" />
 <!--employer listing start  -->
 <div class="job-search-listing">
     <div class="container">
-        <div class="row">
-            @await Component.InvokeAsync("Left")
-            <div class="col-lg-8">
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
                 <div class="right-section">
                     <div class="d-flex sort-section">
                         <div class="col-6">
                             <h6 style="font-weight: bold; margin-top: 8px;">Sort By:</h6>
                         </div>
                         <div class="col-6">
-                            <select class="form-control">
-                                <option value="">newest</option>
-                                <option value="">oldest</option>
+                            <select class="form-control" id="sort">
+                                <option value="new">newest</option>
+                                <option value="old">oldest</option>
                             </select>
                         </div>
                     </div>

@@ -1,5 +1,18 @@
 $(document).ready(function () {
 
+
+    $('#min').keyup(function(){
+        $('#max').attr({
+            'min': $(this).val()
+        });
+    })
+
+    $('#max').keyup(function () {
+        $('#min').attr({
+            'max': $(this).val()
+        });
+    })
+
     // navbar section start
     let user = $('.user');
     let dropdown = $('.dropdown');
@@ -100,14 +113,36 @@ $(document).ready(function () {
 
     // mark all as read
     let menu = $('.kebab-menu');
+    let read = $('.mark-as-read');
+    read.click(function () {
+        let Id = $(this).parents('.message').prev().val();
+        document.location.href = '/Admin/Message/Read?Id=' + Id;
+    })
     menu.click(function () {
         $('.menu-item').toggle();
     })
 
     $('.menu-item').click(function () {
         $(this).hide();
+        document.location.href = '/Admin/Message/ReadAll';
     })
     // mark all as read
+
+    //
+    $('.next-section').click(function () {
+        $(this).parent().parent().hide();
+        $(this).parent().parent().next().show();
+    });
+    $('.prev-section').click(function () {
+        $(this).parent().parent().hide();
+        $(this).parent().parent().prev().show();
+    });
+    $('.value').text($('[type=range]').val());
+    $('[type=range]').change(function () {
+        let val = $(this).val();
+        $(this).prev().children('.value').text(val);
+    })
+    //
 
     // functions
     function DropDownOpen(elem) {

@@ -1,4 +1,4 @@
-﻿@model Job
+﻿@model MessageVM
 @{
     ViewData["Title"] = "Detail";
 }
@@ -13,7 +13,7 @@
                         <div class="row">
                             <div class="col-2">
                                 <div class="image">
-                                    <img src="~/img/company-logo/@Model.Company.Logo" alt="">
+                                    <img src="~/img/company-logo/@Model.Job.Company.Logo" alt="">
                                 </div>
                             </div>
                             <div class="col-10">
@@ -21,9 +21,9 @@
                                     <div class="name">
                                         @Model.Name
                                     </div>
-                                    <span><i class="fas fa-briefcase"></i>@Model.Category.Name</span>
-                                    <span><i class="fas fa-map-marker-alt"></i>@Model.Location.Name</span>
-                                    <span><i class="far fa-clock"></i>Full Time</span>
+                                    <span><i class="fas fa-briefcase"></i>@Model.Job.Category.Name</span>
+                                    <span><i class="fas fa-map-marker-alt"></i>@Model.Job.Location.Name</span>
+                                    <span><i class="far fa-clock"></i>@Model.Job.Type.Name</span>
                                 </div>
                             </div>
                         </div>
@@ -31,19 +31,13 @@
                     <div class="job-about">
                         <h3>Job Description</h3>
                         <p>
-                            @Model.Description
+                            @Model.Job.Description
                         </p>
                     </div>
                     <div class="job-experince">
                         <h3>Education + Experience</h3>
                         <ul>
-                            @foreach (string item in ViewBag.Demands)
-	                         {
-                            <li>
-                                <i class="fas fa-check"></i>
-                                @item
-                            </li>
-	                         }
+                            @Html.Raw(Model.Job.Demand.Education)
                         </ul>
                     </div>
                     <div class="related-job">
@@ -66,7 +60,7 @@
                                                 <div class="row">
                                                     <p><i class="fas fa-briefcase"></i>@item.Category.Name</p>
                                                     <p><i class="fas fa-map-marker-alt"></i>@item.Location.Name</p>
-                                                    <p><i class="far fa-clock"></i> Full Time</p>
+                                                    <p><i class="far fa-clock"></i>@item.Type.Name</p>
                                                 </div>
                                             </div>
                                             <div class="deadline">
@@ -111,7 +105,7 @@
                                 </div>
                                 <div class="col-9">
                                     <h5 style="font-weight: bold;">Salary</h5>
-                                    <p>£@Model.Salary</p>
+                                    <p>@Model.Job.Currency.Mark @Model.Job.Salary</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -120,7 +114,7 @@
                                 </div>
                                 <div class="col-9">
                                     <h5 style="font-weight: bold;">Location</h5>
-                                    <p>@Model.Location.Name</p>
+                                    <p>@Model.Job.Location.Name</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -129,7 +123,7 @@
                                 </div>
                                 <div class="col-9">
                                     <h5 style="font-weight: bold;">Job Type</h5>
-                                    <p>Full Time</p>
+                                    <p>@Model.Job.Type.Name</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -138,16 +132,21 @@
                                 </div>
                                 <div class="col-9">
                                     <h5 style="font-weight: bold;">Experience</h5>
-                                    <p>@Model.Experience Years</p>
+                                    <p>@Model.Job.Experience Years</p>
                                 </div>
                             </div>
                         </div>
                         <div class="quick-contact">
                             <h3>Quick Contact</h3>
-                            <form action="">
-                                <input type="text" placeholder="Name">
-                                <input type="text" placeholder="Name">
-                                <textarea rows="5" placeholder="Write message"></textarea>
+                            <form method="post">
+                                <input asp-for="Name" id="name" autocomplete="off" placeholder="Name">
+                                <ul style="display:none">
+                                    @foreach (AppUser item in ViewBag.Users)
+                                    {
+                                        <li>@item.Email</li>
+                                    }
+                                </ul>
+                                <textarea rows="5" asp-for="Text" placeholder="Write message"></textarea>
                                 <button class="btn-send">Send Message</button>
                             </form>
                         </div>
@@ -158,3 +157,25 @@
     </div>
 </div>
 <!--job detail end  -->
+@section  Scripts{
+<script>
+    let lists = document.querySelectorAll('.quick-contact ul li');
+    let input = document.querySelector('#name');
+    input.onkeyup = function () {
+        if (this.value.length != 0) {
+            this.nextElementSibling.style.display = 'block';
+        } else {
+            this.nextElementSibling.style.display = 'none';
+        }
+    }
+    for (let list of lists) {
+        list.onclick = function () {
+            this.parentElement.previousElementSibling.value = this.innerText;
+            this.parentElement.style.display = 'none';
+        }
+    }
+    document.querySelector('.quick-contact form').onsubmit = function () {
+        alert('Message sent succesfully');
+    }
+</script>
+}

@@ -30,8 +30,7 @@
                                             </div>
                                             <div class="features">
                                                 <p><i class="fas fa-user"></i> Admin</p>
-                                                <p><i class="far fa-comment-dots"></i> 27</p>
-                                                <p><i class="far fa-heart"></i>27</p>
+                                                <p><i class="far fa-comment-dots"></i> @item.Comments.Count()</p>
                                             </div>
                                             <div class="description">
                                                 @if (item.Description.Length <= 100)
@@ -56,36 +55,81 @@
                 </div>
                 <div class="pagination">
                     <ul>
-                        <li>
-                            <a href="">Prev</a>
-                        </li>
-                        <li>
-                            <a href="" class="actived">1</a>
-                        </li>
-                        <li>
-                            <a href="">2</a>
-                        </li>
-                        <li>
-                            <a href="">3</a>
-                        </li>
-                        <li>
-                            <a href="">Next</a>
-                        </li>
+                        @if (ViewBag.Blogs/4 >= 1)
+                        {
+                            @if (ViewBag.Page != null)
+                            {
+                                int prev = ViewBag.Page - 1;
+                                if (ViewBag.Page != 1)
+                                {
+                                    <li>
+                                        <a asp-action="Index" asp-route-Id="@prev">Prev</a>
+                                    </li>
+                                }
+                            }
+                            @for (int i = 1; i <= Math.Ceiling((decimal)ViewBag.Blogs/4); i++)
+                            {
+                                @if (ViewBag.Page == null)
+                                {
+                                    if (i == 1)
+                                    {
+                                        <li>
+                                            <a asp-action="Index" asp-route-Id="@i" class="actived">@i</a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            <a asp-action="Index" asp-route-Id="@i">@i</a>
+                                        </li>
+                                    }
+                                }
+                                else
+                                {
+                                    if (i == ViewBag.Page)
+                                    {
+                                        <li>
+                                            <a asp-action="Index" asp-route-Id="@i" class="actived">@i</a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            <a asp-action="Index" asp-route-Id="@i">@i</a>
+                                        </li>
+                                    }
+                                }
+                            }
+                            @if (ViewBag.Page != null)
+                            {
+                                int next = ViewBag.Page + 1;
+                                if (ViewBag.Page != Math.Ceiling((decimal)ViewBag.Blogs / 4))
+                                {
+                                    <li>
+                                        <a asp-action="Index" asp-route-Id="@next">Next</a>
+                                    </li>
+                                }
+                            }
+                            else
+                            {
+                                <li>
+                                    <a asp-action="Index" asp-route-Id="2">Next</a>
+                                </li>
+                            }
+                        }
                     </ul>
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="search-side">
-                    <form action="">
-                        <div class="form-group search-input">
-                            <h3>Search</h3>
-                            <input type="text" class="form-control " placeholder="Search Keywords">
-                            <button><i class="fas fa-search"></i></button>
-                        </div>
-                    </form>
+                    <div class="form-group search-input">
+                        <h3>Search</h3>
+                        <input type="text" id="search" class="form-control " placeholder="Search Keywords">
+                        <button><i class="fas fa-search"></i></button>
+                    </div>
                     <div class="recent-post">
                         <h3>Recent Posts</h3>
-                        @foreach (Blog item in Model.OrderByDescending(b => b.Id).Take(3))
+                        @foreach (Blog item in ViewBag.Latest)
                         {
                             <div class="post">
                                 <div class="row">
@@ -116,69 +160,25 @@
                     </div>
                     <div class="categoryList">
                         <h3>Categories</h3>
-                        <div class="category">
-                            <div class="row justify-content-between">
-                                <p>Information</p>
-                                <p>(45)</p>
+                        @foreach (BlogType item in ViewBag.Categories)
+                        {
+                            IEnumerable<Blog> blogs = ViewBag.BlogCount;
+                            <div class="category">
+                                <div class="row justify-content-between">
+                                    <p>@item.Type</p>
+                                    <p>(@blogs.Where(b=>b.BlogTypeId==item.Id).Count())</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="category">
-                            <div class="row justify-content-between">
-                                <p>Jobs</p>
-                                <p>(21)</p>
-                            </div>
-                        </div>
-                        <div class="category">
-                            <div class="row justify-content-between">
-                                <p>Education</p>
-                                <p>(18)</p>
-                            </div>
-                        </div>
-                        <div class="category">
-                            <div class="row justify-content-between">
-                                <p>Skill</p>
-                                <p>(32)</p>
-                            </div>
-                        </div>
-                        <div class="category">
-                            <div class="row justify-content-between">
-                                <p>Learn</p>
-                                <p>(9)</p>
-                            </div>
-                        </div>
-                        <div class="category">
-                            <div class="row justify-content-between">
-                                <p>Other</p>
-                                <p>(22)</p>
-                            </div>
-                        </div>
+                        }
                     </div>
                     <div class="tagList">
                         <h3>Tags</h3>
-                        <div class="tag">
-                            <a href="">Image</a>
-                        </div>
-                        <div class="tag">
-                            <a href="">Features</a>
-                        </div>
-                        <div class="tag">
-                            <a href="">Gallery</a>
-                        </div>
-                        <div class="tag">
-                            <a href="">Slideshow</a>
-                        </div>
-                        <div class="tag">
-                            <a href="">Post Formats</a>
-                        </div>
-                        <div class="tag">
-                            <a href="">Typography</a>
-                        </div>
-                        <div class="tag">
-                            <a href="">Best Sellers</a>
-                        </div>
-                        <div class="tag">
-                            <a href="">Woo Commerce</a>
-                        </div>
+                        @foreach (Tag item in ViewBag.Tags)
+                        {
+                            <div class="tag">
+                                <a asp-action="TagSearch" asp-route-Tag="@item.Name">@item.Name</a>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>

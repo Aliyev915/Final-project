@@ -13,7 +13,7 @@
                         <div class="row">
                             <div class="col-2">
                                 <div class="image">
-                                    <img src="~/img/avatar/@Model.Image" alt="">
+                                    <img src="~/img/@Model.AppUser.Image" alt="">
                                 </div>
                             </div>
                             <div class="col-10">
@@ -37,44 +37,50 @@
                         <h3>Education</h3>
                         @foreach (Candidate_Education item in Model.Candidate_Education)
                         {
-                            <div class="row my-5">
-                                <div class="col-2">
-                                    <div class="icon">
-                                        <i class="fas fa-graduation-cap"></i>
+                            if (item.School != "none")
+                            {
+                                <div class="row my-5">
+                                    <div class="col-2">
+                                        <div class="icon">
+                                            <i class="fas fa-graduation-cap"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-10">
+                                        <div class="speciality">
+                                            <p>@item.School</p>
+                                            <p>/ @item.Speciality</p>
+                                        </div>
+                                        <div class="year ">
+                                            <p>@item.EducationYear</p>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-10">
-                                    <div class="speciality">
-                                        <p>@item.School</p>
-                                        <p>/ @item.Speciality</p>
-                                    </div>
-                                    <div class="year ">
-                                        <p>@item.EducationYear</p>
-                                    </div>
-                                </div>
-                            </div>
+                            }
                         }
                     </div>
                     <div class="candidate-experience">
                         <h3>Work Experience</h3>
                         @foreach (Candidate_Experience item in Model.Candidate_Experience)
                         {
-                            <div class="row my-5">
-                                <div class="col-2">
-                                    <div class="icon">
-                                        <i class="fas fa-briefcase"></i>
+                            if (item.Company != "none")
+                            {
+                                <div class="row my-5">
+                                    <div class="col-2">
+                                        <div class="icon">
+                                            <i class="fas fa-briefcase"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-10">
+                                        <div class="speciality">
+                                            <p>@item.Company</p>
+                                            <p>/ @item.Speciality</p>
+                                        </div>
+                                        <div class="year ">
+                                            <p>@item.ExperienceYear</p>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-10">
-                                    <div class="speciality">
-                                        <p>@item.Company</p>
-                                        <p>/ @item.Speciality</p>
-                                    </div>
-                                    <div class="year ">
-                                        <p>@item.ExperienceYear</p>
-                                    </div>
-                                </div>
-                            </div>
+                            }
                         }
                     </div>
                     <div class="candidate-skill">
@@ -120,11 +126,6 @@
             </div>
             <div class="col-lg-4">
                 <div class="right-section">
-                    <div class="download">
-                        <button class="btn-download">
-                            download cv
-                        </button>
-                    </div>
                     <div class="search-side">
                         <div class="overview">
                             <h3>Job Overview</h3>
@@ -134,7 +135,7 @@
                                 </div>
                                 <div class="col-9">
                                     <h5 style="font-weight: bold;">Salary</h5>
-                                    <p>£12,000 - £25,000</p>
+                                    <p>@Model.Salary</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -143,7 +144,7 @@
                                 </div>
                                 <div class="col-9">
                                     <h5 style="font-weight: bold;">Location</h5>
-                                    <p>New York City</p>
+                                    <p>@Model.Location.Name</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -152,7 +153,7 @@
                                 </div>
                                 <div class="col-9">
                                     <h5 style="font-weight: bold;">Job Type</h5>
-                                    <p>Full Time</p>
+                                    <p>@Model.Type</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -161,7 +162,7 @@
                                 </div>
                                 <div class="col-9">
                                     <h5 style="font-weight: bold;">Experience</h5>
-                                    <p>2-3 Years</p>
+                                    <p>@ViewBag.Experience Years</p>
                                 </div>
                             </div>
                         </div>

@@ -23,16 +23,28 @@
     <Compile Remove="Migrations\20200827191811_AddDemandTableForJob.Designer.cs" />
     <Compile Remove="Migrations\20200827192236_AddDemandTableForJob.cs" />
     <Compile Remove="Migrations\20200827192236_AddDemandTableForJob.Designer.cs" />
+    <Compile Remove="Migrations\20200901120511_AddCurrencyTable.cs" />
+    <Compile Remove="Migrations\20200901120511_AddCurrencyTable.Designer.cs" />
+    <Compile Remove="Migrations\20200910124350_User.cs" />
+    <Compile Remove="Migrations\20200910124350_User.Designer.cs" />
+    <Compile Remove="Migrations\20200910124626_User.cs" />
+    <Compile Remove="Migrations\20200910124626_User.Designer.cs" />
+    <Compile Remove="Migrations\20200910130037_AddUserTable.cs" />
+    <Compile Remove="Migrations\20200910130037_AddUserTable.Designer.cs" />
+    <Compile Remove="Migrations\20200910163747_AddUserTable.cs" />
+    <Compile Remove="Migrations\20200910163747_AddUserTable.Designer.cs" />
+    <Compile Remove="Migrations\20200913201209_AddMessageTable.cs" />
+    <Compile Remove="Migrations\20200913201209_AddMessageTable.Designer.cs" />
+    <Compile Remove="Migrations\20200913201426_AddMessageTable.cs" />
+    <Compile Remove="Migrations\20200913201426_AddMessageTable.Designer.cs" />
+    <Compile Remove="Migrations\20200918081205_AddColumnStatisticTable.cs" />
+    <Compile Remove="Migrations\20200918081205_AddColumnStatisticTable.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.10" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\admin\" />
   </ItemGroup>
 
 </Project>

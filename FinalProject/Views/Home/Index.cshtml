@@ -1,6 +1,6 @@
 ﻿@model HomeVM
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Home";
 }
 
 <!-- banner-area -->
@@ -11,14 +11,15 @@
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
     </div>
     <div class="search-area">
-        <form id="search" class="form-group">
+        <form id="search">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-4 col-md-6 col-sm-8">
-                        <input type="text" class="form-control" placeholder="Job title, Keywords or company name">
+                        <input asp-for="Search" id="job" class="form-control" placeholder="Job title, Keywords or company name">
                     </div>
                     <div class="col-4 location-area">
                         <div id="location">
+                            <input type="hidden" asp-for="Location" />
                             <div>location</div>
                             <i class="fas fa-caret-down"></i>
                         </div>
@@ -30,10 +31,10 @@
                         </ul>
                     </div>
                     <div class="col-md-2 col-sm-4">
-                        <button class="findJob">Find a Job</button>
-                        <button class="search-icon">
+                        <a class="findJob">Find a Job</a>
+                        <a class="search-icon">
                             <i class="fas fa-search"></i>
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -43,55 +44,21 @@
         <h2>The time is now</h2>
         <div class="time">
             <div>
-                <span class="hour">00</span>
+                <span class="hour">@DateTime.Now.Hour</span>
                 <span>Hours</span>
             </div>
             <div>
-                <span class="minute">00</span>
+                <span class="minute">@DateTime.Now.Minute</span>
                 <span>Minutes</span>
             </div>
             <div>
-                <span class="second">00</span>
+                <span class="second">@DateTime.Now.Second</span>
                 <span>Seconds</span>
             </div>
         </div>
     </div>
 </div>
 <!-- banner-area -->
-
-<!-- categories end -->
-<div class="categories">
-    <div class="container">
-        <div class="content">
-            <div class="title">
-                <h2>Popular Categories</h2>
-            </div>
-            <div class="description">
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-            </div>
-        </div>
-        <div class="job-category">
-            <div class="row">
-                @foreach (Category item in Model.Categories)
-	            {   
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="icon">
-                        @Html.Raw(item.Icon)
-                    </div>
-                    <div class="name">
-                        @item.Name
-                    </div>
-                    <div class="count">
-                        (@item.Jobs.Count)
-                    </div>
-                </div>		 
-	            }
-            </div>
-        </div>
-    </div>
-</div>
-<!-- categories end -->
-
 <!-- recent jobs start -->
 <div class="recent-jobs">
     <div class="container">
@@ -121,11 +88,11 @@
                                 <div class="row">
                                     <p><i class="fas fa-briefcase"></i> @item.Category.Name</p>
                                     <p><i class="fas fa-map-marker-alt"></i>@item.Location.Name</p>
-                                    <p><i class="far fa-clock"></i> Full Time</p>
+                                    <p><i class="far fa-clock"></i>@item.Type.Name</p>
                                 </div>
                             </div>
                             <div class="deadline">
-                                <p>Deadline: @item.Deadline.ToString("MMMM").Substring(0,3) @item.Deadline.Day, @item.Deadline.Year</p>
+                                <p>Deadline: @item.Deadline.ToString("MMMM").Substring(0, 3) @item.Deadline.Day, @item.Deadline.Year</p>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -143,12 +110,11 @@
             }
         </div>
         <div class="browse-job">
-            <a href="~/" class="btn-browse">Browse All Jobs</a>
+            <a asp-controller="Job" class="btn-browse">Browse All Jobs</a>
         </div>
     </div>
 </div>
 <!-- recent jobs end -->
-
 <!-- statistics start -->
 <div class="statistics">
     <div class="container">
@@ -156,9 +122,25 @@
             @foreach (Statistic item in Model.Statistics)
             {
                 <div class="col-lg-3 col-md-6">
+
                     <div class="member">
                         @Html.Raw(item.Icon)
-                        <h1 class="counter text-white" data-to="@Convert.ToInt32(item.Id*100)">@Convert.ToInt32(item.Id * 100)</h1>
+                        @if (item.Title == "Members")
+                        {
+                            <h1 class="counter text-white" data-to="@ViewBag.UserCount"></h1>
+                        }
+                        @if (item.Title == "Jobs")
+                        {
+                            <h1 class="counter text-white" data-to="@ViewBag.JobCount"></h1>
+                        }
+                        @if (item.Title == "Resumes")
+                        {
+                            <h1 class="counter text-white" data-to="@ViewBag.ResumeCount"></h1>
+                        }
+                        @if (item.Title == "Companies")
+                        {
+                            <h1 class="counter text-white" data-to="@ViewBag.CompanyCount"></h1>
+                        }
                         <p class="text-white">@item.Title</p>
                     </div>
                 </div>
@@ -167,30 +149,6 @@
     </div>
 </div>
 <!-- statistics end -->
-
-<!-- partnership companies start -->
-<div class="partnership-company">
-    <div class="container">
-        <div class="content">
-            <div class="title">
-                <h2>Companies We've Helped</h2>
-            </div>
-            <div class="description">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </div>
-        </div>
-        <div class="row owl-carousel">
-            @foreach (Company item in Model.Companies)
-            {
-                <div class="brand">
-                    <img src="~/img/brand/@item.Brand" alt="">
-                </div>
-            }
-        </div>
-    </div>
-</div>
-<!-- partnership companies end -->
-
 <!-- latest blogs -->
 <div class="blog-area">
     <div class="container">
@@ -210,7 +168,7 @@
                         <img src="~/img/blog/@item.Image" alt="">
                         <div class="date">
                             <p class="text-white">@item.Time.Day</p>
-                            <p class="text-white">@item.Time.ToString("MMMM").Substring(0,3)</p>
+                            <p class="text-white">@item.Time.ToString("MMMM").Substring(0, 3)</p>
                         </div>
                     </div>
                     <div class="blog-body">
@@ -229,7 +187,7 @@
                             }
                             else
                             {
-                                @item.Description.Substring(0,100)
+                                @item.Description.Substring(0, 100)
                             }
                         </div>
                     </div>
@@ -245,3 +203,13 @@
     </div>
 </div>
 <!-- latest blogs -->
+
+@section Scripts{
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <script>
+        // In your Javascript (external .js resource or <script> tag)
+        $(document).ready(function () {
+            $('.js-example-basic-single').select2();
+        });
+    </script>
+}  
