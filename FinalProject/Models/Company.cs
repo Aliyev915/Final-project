@@ -15,6 +15,7 @@ namespace FinalProject.Models
         public string About { get; set; }
         [Required, StringLength(500)]
         public string Logo { get; set; }
+        public string Slug { get; set; }
         [Required]
         public string Adress { get; set; }
         [Required, StringLength(500)]

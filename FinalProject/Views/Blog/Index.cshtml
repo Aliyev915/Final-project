@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Blog>
 @{
-    ViewData["Title"] = "Index";
+    ViewBag.Title = "Blog";
 }
 
 <!-- blog-area start-->
@@ -25,7 +25,7 @@
                                         <div class="blog-detail">
                                             <div class="title">
                                                 <h3>
-                                                    <a asp-controller="Blog" asp-action="Detail" asp-route-Id="@item.Id">@item.Title</a>
+                                                    <a href="@Url.Action("Detail","Blog",new {slug=item.Slug })">@item.Title</a>
                                                 </h3>
                                             </div>
                                             <div class="features">
@@ -43,7 +43,7 @@
                                                 }
                                             </div>
                                             <div class="readMore">
-                                                <a asp-controller="Blog" asp-action="Detail" asp-route-Id="@item.Id">Read more</a>
+                                                <a href="@Url.Action("Detail","Blog",new {slug=item.Slug })">Read more</a>
                                             </div>
                                         </div>
                                     </div>
@@ -186,3 +186,7 @@
     </div>
 </div>
 <!-- blog-area end -->
+
+@section Scripts{
+    <script src="~/js/search.js"></script>
+}

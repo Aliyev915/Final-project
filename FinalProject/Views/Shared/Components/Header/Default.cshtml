@@ -208,9 +208,9 @@
         <!-- banner-area -->
         <div class="sub-banner-area">
             <div class="content">
-                @if (ViewContext.RouteData.Values["action"].ToString() == "Index")
+                @if (ViewContext.RouteData.Values["action"].ToString() != "Detail")
                 {
-                    <h2>@ViewContext.RouteData.Values["controller"].ToString()</h2>
+                    <h2>@ViewContext.RouteData.Values["controller"].ToString()S</h2>
                 }
                 else
                 {

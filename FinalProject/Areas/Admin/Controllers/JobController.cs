@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using FinalProject.DAL;
 using FinalProject.Models;
 using FinalProject.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 

@@ -5,56 +5,6 @@ $(document).ready(function () {
     check.addClass('fas fa-check');
     $('.job-detail .job-experince ul li').prepend(check);
     //
-    //Search
-    $('#search').keyup(function () {
-        let search = $(this).val();
-        $.ajax({
-            url: '/Blog/Search?search=' + search,
-            type: 'Get',
-            success: function (response) {
-                $('.blogs').remove();
-                $('.blog-side .col-lg-8').prepend(response);
-                if (search != "") {
-                    window.history.pushState('', '', '/Blog/Search?search=' + search);
-                    $('.pagination').hide();
-                } else {
-                    window.history.pushState('', '', '/Blog');
-                    $('.pagination').show();
-                }
-            }
-        })
-    })
-    $('#employer').keyup(function () {
-        let search = $(this).val();
-        $.ajax({
-            url: '/Employer/Search?search=' + search,
-            type: 'Get',
-            success: function (response) {
-                $('.employers').remove();
-                $('.col-lg-9 .right-section').append(response);
-                console.log(response);
-                if (search != "") {
-                    window.history.pushState('', '', '/Employer/Search?search=' + search);
-                    $('.pagination').hide();
-                } else {
-                    window.history.pushState('', '', '/Employer');
-                    $('.pagination').show();
-                }
-            }
-        })
-    })
-    $('#sort').change(function () {
-        let sort = $(this).val();
-        $.ajax({
-            url: '/' + controller + '/Sort?sort=' + sort,
-            type: 'Get',
-            success: function (response) {
-                    $('.' + controller.toLowerCase() + 's').remove();
-                    $('.right-section').append(response);
-            }
-        })
-    })
-    //Search
 
     // back to top start
     $(window).on('scroll', function () {
@@ -129,30 +79,9 @@ $(document).ready(function () {
     let burger = $('.burger-button');
     burger.click(function () {
         $('.nav-list').slideToggle();
-    })
-
-    $('.findJob').click(function (e) {
-        let text = $('#job').val();
-        let route = '/Job/Search?text=' + text + '&location=' + inputLoc.val() + '&category=' + 'All' +
-            '&type=' + 'All' + '&date=' + 'All' +
-            '&experience=' + 'All' + '&salary=' + 'All';
-        window.location.replace('/Job');
-        $.ajax({
-            url: route,
-            type: 'Get',
-            success: function (response) {
-                $('.jobs').remove();
-                $('.col-lg-8').prepend(response);
-                if (text != "") {
-                    window.history.pushState('', '', '/Job/Search?search=' +text);
-                    $('.pagination').hide();
-                } else {
-                    window.history.pushState('', '', '/Job');
-                    $('.pagination').show();
-                }
-            }
-        })
-    })
+    });
+    let controller = $('#controller').val();
+    let action = $('#action').val();
     // navbar responsive end
 
     // Search area start
@@ -363,111 +292,6 @@ $(document).ready(function () {
     // slider area end
 
     // Search
-    let searchInput = $('.left-section .form-control');
-    let controller = $('#controller').val();
-    let select1 = $('.js-example-basic-single').eq(0);
-    let select2 = $('.js-example-basic-single').eq(1);
-    let type = $('input:radio[name=jobType]');
-    let date = $('input:radio[name=DataPosted]');
-    let experience = $('input:radio[name=Experince]');
-    let salary = $('input:radio[name=Salary]');
-    let checkedDate = $('input:radio[name=DataPosted]:checked').val();
-    let checkedType = $('input:radio[name=jobType]:checked').val();
-    let checkedExp = $('input:radio[name=Experince]:checked').val();
-    let checkedSalary = $('input:radio[name=Salary]:checked').val();
-    searchInput.keyup(function (e) {
-        let text = $(this).val();
-        let route = '/' + controller + '/Search?text=' + text + '&location=' + select1.val() + '&category=' + select2.val() +
-            '&type=' + checkedType + '&date=' + checkedDate +
-            '&experience=' + checkedExp + '&salary=' + checkedSalary;
-        $.ajax({
-            url: route,
-            type: 'Get',
-            success: function (response) {
-                $('.jobs').remove();
-                $('.col-lg-8 .right-section').append(response);
-            }
-        })
-    })
-    select1.change(function () {
-        let location = $(this).val();
-        let route = '/' + controller + '/Search?text=' + searchInput.val() + '&location=' + location + '&category=' + select2.val() +
-            '&type=' + checkedType + '&date=' + checkedDate +
-            '&experience=' + checkedExp + '&salary=' + checkedSalary;
-        $.ajax({
-            url: route,
-            type: 'Get',
-            success: function (response) {
-                $('.jobs').remove();
-                $('.col-lg-8 .right-section').append(response);
-            }
-        })
-
-    });
-    select2.change(function () {
-        let category = $(this).val();        let route = '/' + controller + '/Search?text=' + searchInput.val() + '&location=' + select1.val() + '&category=' + category +            '&type=' + checkedType + '&date=' + checkedDate +
-            '&experience=' + checkedExp + '&salary=' + checkedSalary;        $.ajax({
-            url: route,
-            type: 'Get',
-            success: function (response) {
-                $('.jobs').remove();
-                $('.col-lg-8 .right-section').append(response);
-            }
-        })
-    });
-
-    type.change(function () {
-        let route = '/' + controller + '/Search?text=' + searchInput.val() + '&location=' +
-            select1.val() + '&category=' + select2.val() + '&type=' + $(this).val() + '&date=' + checkedDate +
-            '&experience=' + checkedExp + '&salary=' + checkedSalary;
-        $.ajax({
-            url: route,
-            type: 'Get',
-            success: function (response) {
-                $('.jobs').remove();
-                $('.col-lg-8 .right-section').append(response);
-            }
-        })
-    });
-    date.change(function () {
-        let route = '/' + controller + '/Search?text=' + searchInput.val() + '&location=' +
-            select1.val() + '&category=' + select2.val() + '&type=' + checkedType + '&date=' + $(this).val() +
-            '&experience=' + checkedExp + '&salary=' + checkedSalary;
-        $.ajax({
-            url: route,
-            type: 'Get',
-            success: function (response) {
-                $('.jobs').remove();
-                $('.col-lg-8 .right-section').append(response);
-            }
-        })
-    });
-    experience.change(function () {
-        let route = '/' + controller + '/Search?text=' + searchInput.val() + '&location=' +
-            select1.val() + '&category=' + select2.val() + '&type=' + checkedType + '&date=' + checkedDate +
-            '&experience=' + $(this).val() + '&salary=' + checkedSalary;
-        $.ajax({
-            url: route,
-            type: 'Get',
-            success: function (response) {
-                $('.jobs').remove();
-                $('.col-lg-8 .right-section').append(response);
-            }
-        })
-    });
-    salary.change(function () {
-        let route = '/' + controller + '/Search?text=' + searchInput.val() + '&location=' +
-            select1.val() + '&category=' + select2.val() + '&type=' + checkedType + '&date=' + checkedDate +
-            '&experience=' + checkedExp + '&salary=' +$(this).val();
-        $.ajax({
-            url: route,
-            type: 'Get',
-            success: function (response) {
-                $('.jobs').remove();
-                $('.col-lg-8 .right-section').append(response);
-            }
-        })
-    });
 
     // Search
 

@@ -39,15 +39,15 @@ namespace FinalProject.Controllers
             }
             return View(model);
         }
-
-        public async Task<IActionResult> Detail(int? Id)
+        [Route("Blog/{slug}")]
+        public async Task<IActionResult> Detail(string slug)
         {
             ViewBag.Blogs = _db.Blogs.OrderByDescending(b=>b.Id).Take(3);
             ViewBag.Tags = _db.Tags;
             ViewBag.Categories = _db.BlogTypes;
             ViewBag.BlogCount = _db.Blogs.Include(b=>b.BlogType);
-            if (Id == null) return NotFound();
-            Blog blog = _db.Blogs.Include(b=>b.BlogTags).Include(b=>b.BlogType).FirstOrDefault(b=>b.Id==Id);
+            if (slug == null) return NotFound();
+            Blog blog = _db.Blogs.Include(b=>b.BlogTags).Include(b=>b.BlogType).FirstOrDefault(b=>b.Slug.Trim()==slug);
             ViewBag.BlogTags = _db.BlogTags.Include(bt=>bt.Tag).Where(bt => bt.BlogId==blog.Id);
             ViewBag.Comments = _db.Comments.Include(c => c.AppUser).Include(c => c.Blog).Where(c=>c.BlogId==blog.Id);
             if (User.Identity.IsAuthenticated)
@@ -67,11 +67,11 @@ namespace FinalProject.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Detail(int? Id,BlogDetailVM model)
+        public async Task<IActionResult> Detail(string slug,BlogDetailVM model)
         {
             ViewBag.Blogs = _db.Blogs.OrderByDescending(b => b.Id).Take(3);
-            if (Id == null) return NotFound();
-            Blog blog = _db.Blogs.Include(b => b.BlogTags).Include(b => b.BlogType).FirstOrDefault(b => b.Id == Id);
+            if (slug == null) return NotFound();
+            Blog blog = _db.Blogs.Include(b => b.BlogTags).Include(b => b.BlogType).FirstOrDefault(b => b.Slug == slug) ;
             ViewBag.Tags = _db.BlogTags.Include(bt => bt.Tag).Where(bt => bt.BlogId == blog.Id);
             if (blog == null) NotFound();
             if (!User.Identity.IsAuthenticated)

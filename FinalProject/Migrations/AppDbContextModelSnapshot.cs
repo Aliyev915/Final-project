@@ -63,6 +63,8 @@ namespace FinalProject.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed");
 
+                    b.Property<DateTime>("RegisterDate");
+
                     b.Property<bool>("RememberMe");
 
                     b.Property<string>("SecurityStamp");
@@ -129,6 +131,8 @@ namespace FinalProject.Migrations
 
                     b.Property<string>("Image")
                         .HasMaxLength(250);
+
+                    b.Property<string>("Slug");
 
                     b.Property<DateTime>("Time");
 
@@ -371,6 +375,8 @@ namespace FinalProject.Migrations
                         .IsRequired()
                         .HasMaxLength(100);
 
+                    b.Property<string>("Slug");
+
                     b.HasKey("Id");
 
                     b.ToTable("Companies");
@@ -453,6 +459,8 @@ namespace FinalProject.Migrations
                     b.Property<int>("Salary");
 
                     b.Property<DateTime>("SharedDate");
+
+                    b.Property<string>("Slug");
 
                     b.Property<int>("TypeId");
 

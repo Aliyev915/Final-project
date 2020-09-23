@@ -19,6 +19,7 @@ namespace FinalProject.Models
         [StringLength(250)]
         public string Phone { get; set; }
         public string Adress { get; set; }
+        public DateTime RegisterDate { get; set; }
         public string Image { get; set; }
         [NotMapped]
         public IFormFile Photo { get; set; }

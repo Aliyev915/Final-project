@@ -111,7 +111,7 @@
                                 </div>
                                 <div class="col-9">
                                     <h5 style="font-weight: bold;">Posted Job</h5>
-                                    <p>32</p>
+                                    <p>@Model.Jobs.Where(j => j.CompanyId == Model.Id).Count()</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -120,7 +120,7 @@
                                 </div>
                                 <div class="col-9">
                                     <h5 style="font-weight: bold;">Location</h5>
-                                    <p>Baku</p>
+                                    <p>@Model.Adress</p>
                                 </div>
                             </div>
                             <div class="row">

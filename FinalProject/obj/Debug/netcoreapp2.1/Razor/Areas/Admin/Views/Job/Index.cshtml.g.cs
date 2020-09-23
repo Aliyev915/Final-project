@@ -161,7 +161,7 @@ using FinalProject.ViewModels;
             WriteLiteral("</td>\r\n                    <td>\r\n                        ");
             EndContext();
             BeginContext(1609, 153, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3b08f41a5dc94b18bb5229e30f432483", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "53bb1b4093bf45aca5adf4c4e265954f", async() => {
                 BeginContext(1675, 83, true);
                 WriteLiteral("\r\n                            <i class=\"fas fa-edit\"></i>\r\n                        ");
                 EndContext();
@@ -198,7 +198,7 @@ using FinalProject.ViewModels;
             WriteLiteral("\r\n                        ");
             EndContext();
             BeginContext(1788, 156, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "98bb20c7fd6c4779a34162f7023ca78e", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a87f876a5111407f9f83514b43d8af8a", async() => {
                 BeginContext(1856, 84, true);
                 WriteLiteral("\r\n                            <i class=\"fas fa-trash\"></i>\r\n                        ");
                 EndContext();

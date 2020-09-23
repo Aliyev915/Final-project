@@ -74,7 +74,7 @@ using FinalProject.ViewModels;
                                     ");
             EndContext();
             BeginContext(497, 45, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "27e71a54ff9d43febdd6e9f5ece13c0d", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "f1ffa494d3d3445da394830e75016a3c", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -466,7 +466,7 @@ WriteAttributeValue(" ", 6148, Model.Candidate_Skill.LeaderShip, 6149, 33, false
             WriteLiteral(" Years</p>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"quick-contact\">\r\n                            <h3>Quick Contact</h3>\r\n                            ");
             EndContext();
             BeginContext(8672, 369, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dfb0e69c95ca4bcf8a4515c82944764e", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9ff1d7ca9266430da705977246ffd76d", async() => {
                 BeginContext(8688, 346, true);
                 WriteLiteral(@"
                                 <input type=""text"" placeholder=""Name"">

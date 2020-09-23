@@ -13,6 +13,7 @@ namespace FinalProject.Models
         public int Id { get; set; }
         [Required]
         public string Title { get; set; }
+        public string Slug { get; set; }
         [Required]
         public string Description { get; set; }
         [StringLength(250)]

@@ -10,10 +10,12 @@ using FinalProject.Extensions;
 using FinalProject.Helpers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FinalProject.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles ="Admin")]
     public class BlogController : Controller
     {
         private readonly AppDbContext _db;

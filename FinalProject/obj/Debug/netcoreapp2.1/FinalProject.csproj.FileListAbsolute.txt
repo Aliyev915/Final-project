@@ -69,3 +69,5 @@ C:\Users\Code\Desktop\FinalProject\FinalProject\obj\Debug\netcoreapp2.1\Razor\Ar
 C:\Users\Code\Desktop\FinalProject\FinalProject\obj\Debug\netcoreapp2.1\Razor\Views\Blog\Search.cshtml.g.cs
 C:\Users\Code\Desktop\FinalProject\FinalProject\obj\Debug\netcoreapp2.1\Razor\Views\Blog\TagSearch.cshtml.g.cs
 C:\Users\Code\Desktop\FinalProject\FinalProject\obj\Debug\netcoreapp2.1\Razor\Views\Employer\Search.cshtml.g.cs
+C:\Users\Code\Desktop\FinalProject\FinalProject\obj\Debug\netcoreapp2.1\Razor\Views\Job\SearchFromHome.cshtml.g.cs
+C:\Users\Code\Desktop\FinalProject\FinalProject\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\Shared\Components\AdminHeader\Default.cshtml.g.cs

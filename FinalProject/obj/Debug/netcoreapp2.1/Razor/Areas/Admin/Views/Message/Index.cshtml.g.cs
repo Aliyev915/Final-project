@@ -97,7 +97,7 @@ WriteAttributeValue("", 330, item.Id, 330, 8, false);
             WriteLiteral("                                ");
             EndContext();
             BeginContext(624, 44, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "7b6f54cd322d418ea4e5cfe108e35660", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "c80f2858cbe04941a547a6eee8c6d96c", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -133,7 +133,7 @@ AddHtmlAttributeValue("", 640, item.AppUser.Image, 640, 19, false);
             WriteLiteral("                                ");
             EndContext();
             BeginContext(798, 33, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4681890d21ea48869a519ddda04c133d", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "66fc7ccd0a184015acbf78eb7c9039bf", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -227,7 +227,7 @@ AddHtmlAttributeValue("", 640, item.AppUser.Image, 640, 19, false);
             WriteLiteral("                        </div>\r\n                        <div class=\"reply\">\r\n                            ");
             EndContext();
             BeginContext(1921, 167, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6df50b319dfd465ab47d648ab558eace", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f9b1fd3c48ec4c9eae2af4b340841136", async() => {
                 BeginContext(1992, 92, true);
                 WriteLiteral("\r\n                                <i class=\"fas fa-reply\"></i>\r\n                            ");
                 EndContext();

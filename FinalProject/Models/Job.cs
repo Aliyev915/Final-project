@@ -16,6 +16,7 @@ namespace FinalProject.Models
         public int Salary { get; set; }
         public string Experience { get; set; }
         public string Description { get; set; }
+        public string Slug { get; set; }
         public int TypeId { get; set; }
         public virtual Models.Type Type { get; set; }
         public int LocationId { get; set; }

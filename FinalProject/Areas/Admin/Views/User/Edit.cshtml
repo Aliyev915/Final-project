@@ -64,18 +64,20 @@
             </div>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/4a0d6e395d.js" crossorigin="anonymous"></script>
+
     <script>
         let role = document.querySelector('#role');
         let company = document.querySelector('#company');
         if (role.value == 'Moderator') {
             company.style.display = 'inline-block';
-            }
+        }
         role.onchange = function () {
             if (role.value == 'Moderator') {
                 company.style.display = 'inline-block';
             } else {
-                company.style.display='none'
+                company.style.display = 'none'
             }
         }
     </script>

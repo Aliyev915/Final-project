@@ -23,11 +23,10 @@ namespace FinalProject.Controllers
             IEnumerable<Company> model = _db.Companies.Include(c => c.Jobs);
             return View(model);
         }
-
-        public async Task<IActionResult> Detail(int? Id)
+        [Route("Employer/{slug}")]
+        public async Task<IActionResult> Detail(string slug)
         {
-            if (Id == null) return NotFound();
-            Company company = await _db.Companies.Include(c => c.Jobs).FirstOrDefaultAsync(c => c.Id == Id);
+            Company company = await _db.Companies.Include(c => c.Jobs).FirstOrDefaultAsync(c => c.Slug == slug);
             if (company == null) return NotFound();
             ViewBag.Jobs = _db.Jobs.Include(j => j.Location).Include(j => j.Category).Include(j => j.Company).
                             Where(j => j.CompanyId == company.Id);

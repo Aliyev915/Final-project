@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Company>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Employers";
 }
 
 <input type="hidden" id="controller" value="@ViewContext.RouteData.Values["Controller"]" />
@@ -37,7 +37,7 @@
                                         </div>
                                         <div class="about">
                                             <span><i class="fas fa-map-marker-alt"></i>Baku</span>
-                                            <a asp-controller="Employer" asp-action="Detail" asp-route-Id="@item.Id">
+                                            <a href="@Url.Action("Detail","Employer" ,new {slug=@item.Slug })">
                                                 @item.Jobs.Where(j => j.CompanyId == item.Id).Count() Open Position
                                             </a>
                                         </div>
@@ -76,3 +76,7 @@
     </div>
 </div>
 <!--employer listing end  -->
+
+@section Scripts{
+    <script src="~/js/search.js"></script>
+}

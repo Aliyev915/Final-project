@@ -51,13 +51,12 @@ namespace FinalProject.Controllers
             }
             return View(model);
         }
-
-        public async Task<IActionResult> Detail(int? Id)
+        [Route("Job/{slug}")]
+        public async Task<IActionResult> Detail(string slug)
         {
-            if (Id == null) return NotFound();
             Job job = await _db.Jobs.Include(j => j.Company).Include(j => j.Demand).Include(j => j.Category).Include(j=>j.Currency).
                 Include(j => j.Type).
-                Include(j => j.Location).FirstOrDefaultAsync(j => j.Id == Id);
+                Include(j => j.Location).FirstOrDefaultAsync(j => j.Slug.Trim() == slug);
             if (job == null) return NotFound();
             ViewBag.Jobs = _db.Jobs.Include(j => j.Location).Include(j => j.Company).Include(j => j.Category).Include(j => j.Type).
                     Where(j => j.CategoryId == job.CategoryId);
@@ -68,12 +67,12 @@ namespace FinalProject.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Detail(int? Id,MessageVM model)
+        [Route("Job/{slug}")]
+        public async Task<IActionResult> Detail(string slug, MessageVM model)
         {
-            if (Id == null) return NotFound();
             Job job = await _db.Jobs.Include(j => j.Company).Include(j => j.Demand).Include(j => j.Category).Include(j => j.Currency).
                 Include(j => j.Type).
-                Include(j => j.Location).FirstOrDefaultAsync(j => j.Id == Id);
+                Include(j => j.Location).FirstOrDefaultAsync(j => j.Slug == slug);
             if (job == null) return NotFound();
             ViewBag.Jobs = _db.Jobs.Include(j => j.Location).Include(j => j.Company).Include(j => j.Category).Include(j => j.Type).
                     Where(j => j.CategoryId == job.CategoryId);
@@ -117,6 +116,28 @@ namespace FinalProject.Controllers
             return PartialView("_SearchPartial",model);
         }
 
+        public IActionResult SearchFromHome(string text,string location)
+        {
+            ViewBag.Categories = _db.Categories;
+            ViewBag.Locations = _db.Locations;
+            ViewBag.Types = _db.Types;
+            IEnumerable<Job> model = _db.Jobs.Include(j=>j.Company).Include(j=>j.Location).Include(j=>j.Category).
+                                Include(j=>j.Category).Include(j=>j.Type).Include(j=>j.Currency);
+            if (text != null && location==null)
+            {
+                model = model.Where(j => j.Name.Contains(text));
+            }else if(text==null && location != null)
+            {
+                Location loc = _db.Locations.FirstOrDefault(l=>l.Name==location);
+                model = model.Where(j => j.Location.Id==loc.Id);
+            }else if(text!=null && location != null)
+            {
+                Location loc = _db.Locations.FirstOrDefault(l => l.Name == location);
+                model = model.Where(j => j.Location.Id == loc.Id && j.Name.Contains(text));
+            }
+            return View(model);
+        }
+
         public IActionResult Sort(string sort)
         {
             IEnumerable<Job> jobs = _db.Jobs.Include(j=>j.Category).Include(j=>j.Type).
@@ -156,7 +177,7 @@ namespace FinalProject.Controllers
                 _db.Bookmarks.Remove(book);
             }
             await _db.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index");
         }
     }
 }

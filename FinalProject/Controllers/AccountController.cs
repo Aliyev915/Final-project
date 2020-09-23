@@ -72,6 +72,7 @@ namespace FinalProject.Controllers
                 Fullname=register.Fullname,
                 Email=register.Email,
                 UserName=register.Username,
+                RegisterDate=DateTime.Now,
                 Image="user.png"
             };
             var identityResult =await _userManager.CreateAsync(user,register.Password);
@@ -84,7 +85,7 @@ namespace FinalProject.Controllers
                 }
             }
             await _userManager.AddToRoleAsync(user, Helper.Roles.User.ToString());
-            return View();
+            return RedirectToAction(nameof(Login));
         }
 
         public async Task<IActionResult> Logout()
