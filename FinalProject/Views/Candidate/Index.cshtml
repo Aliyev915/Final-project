@@ -1,9 +1,9 @@
 ﻿@model IEnumerable<Candidate>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Candidates";
 }
 
-    <input type="text" id="controller" value="@ViewContext.RouteData.Values["Controller"]"/>
+    <input type="hidden" id="controller" value="@ViewContext.RouteData.Values["Controller"]"/>
 <!--candidate listing start  -->
 <div class="job-search-listing">
     <div class="container">
@@ -51,7 +51,7 @@
                                     </div>
                                     <div class="col-md-2 col-sm-4 offset-md-1 offset-sm-3">
                                         <div class="btn-resume">
-                                            <a asp-controller="Candidate" asp-action="Detail" asp-route-Id="@item.Id">Wiew Resume</a>
+                                            <a asp-controller="Candidate" asp-action="Detail" asp-route-name="@item.Fullname">Wiew Resume</a>
                                         </div>
                                     </div>
                                 </div>

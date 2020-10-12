@@ -1,9 +1,10 @@
 ﻿$(document).ready(function () {
     //Search
+    let inputLoc = $('#location input');
     $('#search').keyup(function () {
         let search = $(this).val();
         $.ajax({
-            url: '/Blog/Search?search=' + search,
+            url: '/Blog/Search/' + search,
             type: 'Get',
             success: function (response) {
                 $('.blogs').remove();
@@ -40,7 +41,7 @@
     $('#sort').change(function () {
         let sort = $(this).val();
         $.ajax({
-            url: '/' + controller + '/Sort?sort=' + sort,
+            url: '/' + controller + '/Sort/'+ sort,
             type: 'Get',
             success: function (response) {
                 $('.' + controller.toLowerCase() + 's').remove();
@@ -55,8 +56,18 @@
         window.history.pushState('', '', '/Job');
     }
     $('.findJob').click(function (e) {
+        let route;
         let search = $('#job').val();
-        let route = '/Job/SearchFromHome?search=' + search + '&location=' + inputLoc.val();
+        if (search == '' && inputLoc.val() != '') {
+            route = '/Job/SearchFromHome/ ' + '/' + inputLoc.val();
+        }
+        else if (search != '' && inputLoc.val() == '') {
+            route = '/Job/SearchFromHome/' + search;
+        } else if (search != '' && inputLoc.val() != '') {
+            route = '/Job/SearchFromHome/' + search + '/' + inputLoc.val();
+        } else {
+            route = '/Job';
+        }
         window.location.replace(route);
 
     });
@@ -74,9 +85,14 @@
     let checkedSalary = $('input:radio[name=Salary]:checked').val();
     searchInput.keyup(function (e) {
         let text = $(this).val();
-        let route = '/' + controller + '/Search?text=' + text + '&location=' + select1.val() + '&category=' + select2.val() +
-            '&type=' + checkedType + '&date=' + checkedDate +
-            '&experience=' + checkedExp + '&salary=' + checkedSalary;
+        let route;
+        if (text == '') {
+            route = '/Job/ ' + '/' + select1.val() + '/' + select2.val() +
+                '/' + checkedType + '/' + checkedDate + '/' + checkedExp + '/' + checkedSalary;
+        } else {
+            route = '/Job/' + text + '/' + select1.val() + '/' + select2.val() +
+                '/' + checkedType + '/' + checkedDate + '/' + checkedExp + '/' + checkedSalary;
+        }
         $.ajax({
             url: route,
             type: 'Get',
@@ -88,9 +104,14 @@
     })
     select1.change(function () {
         let location = $(this).val();
-        let route = '/' + controller + '/Search?text=' + searchInput.val() + '&location=' + location + '&category=' + select2.val() +
-            '&type=' + checkedType + '&date=' + checkedDate +
-            '&experience=' + checkedExp + '&salary=' + checkedSalary;
+        let route;
+        if (searchInput.val() == "") {
+            route = '/Job/ ' + '/' + location + '/' + select2.val() +
+                '/' + checkedType + '/' + checkedDate + '/' + checkedExp + '/' + checkedSalary;
+        } else {
+            route = '/Job/' + searchInput.val() + '/' + location + '/' + select2.val() +
+                '/' + checkedType + '/' + checkedDate + '/' + checkedExp + '/' + checkedSalary;
+        }
         $.ajax({
             url: route,
             type: 'Get',
@@ -103,9 +124,14 @@
     });
     select2.change(function () {
         let category = $(this).val();
-        let route = '/' + controller + '/Search?text=' + searchInput.val() + '&location=' + select1.val() + '&category=' + category +
-            '&type=' + checkedType + '&date=' + checkedDate +
-            '&experience=' + checkedExp + '&salary=' + checkedSalary;
+        let route;
+        if (searchInput.val() == "") {
+            route = '/Job/ ' + '/' + select1.val() + '/' + select2.val() +
+                '/' + checkedType + '/' + checkedDate + '/' + checkedExp + '/' + checkedSalary;
+        } else {
+            route = '/Job/' + searchInput.val() + '/' + select1.val() + '/' + category +
+                '/' + checkedType + '/' + checkedDate + '/' + checkedExp + '/' + checkedSalary;
+        }
         $.ajax({
             url: route,
             type: 'Get',
@@ -117,9 +143,14 @@
     });
 
     type.change(function () {
-        let route = '/' + controller + '/Search?text=' + searchInput.val() + '&location=' +
-            select1.val() + '&category=' + select2.val() + '&type=' + $(this).val() + '&date=' + checkedDate +
-            '&experience=' + checkedExp + '&salary=' + checkedSalary;
+        let route;
+        if (searchInput.val() == "") {
+            route = '/Job/ ' + '/' + select1.val() + '/' + select2.val() +
+                '/' + $(this).val() + '/' + checkedDate + '/' + checkedExp + '/' + checkedSalary;
+        } else {
+            route = '/Job/' + searchInput.val() + '/' + select1.val() + '/' + select2.val() +
+                '/' + $(this).val() + '/' + checkedDate + '/' + checkedExp + '/' + checkedSalary;
+        }
         $.ajax({
             url: route,
             type: 'Get',
@@ -130,9 +161,14 @@
         })
     });
     date.change(function () {
-        let route = '/' + controller + '/Search?text=' + searchInput.val() + '&location=' +
-            select1.val() + '&category=' + select2.val() + '&type=' + checkedType + '&date=' + $(this).val() +
-            '&experience=' + checkedExp + '&salary=' + checkedSalary;
+        let route;
+        if (searchInput.val() == "") {
+            route = '/Job/ ' + '/' + select1.val() + '/' + select2.val() +
+                '/' + checkedType + '/' + $(this).val() + '/' + checkedExp + '/' + checkedSalary;
+        } else {
+            route = '/Job/' + searchInput.val() + '/' + select1.val() + '/' + select2.val() +
+                '/' + checkedType + '/' + $(this).val() + '/' + checkedExp + '/' + checkedSalary;
+        }
         $.ajax({
             url: route,
             type: 'Get',
@@ -143,9 +179,14 @@
         })
     });
     experience.change(function () {
-        let route = '/' + controller + '/Search?text=' + searchInput.val() + '&location=' +
-            select1.val() + '&category=' + select2.val() + '&type=' + checkedType + '&date=' + checkedDate +
-            '&experience=' + $(this).val() + '&salary=' + checkedSalary;
+        let route;
+        if (searchInput.val() == "") {
+            route = '/Job/ ' + '/' + select1.val() + '/' + select2.val() +
+                '/' + checkedType + '/' + checkedDate + '/' + $(this).val() + '/' + checkedSalary;
+        } else {
+            route = '/Job/' + searchInput.val() + '/' + select1.val() + '/' + select2.val() +
+                '/' + checkedType + '/' + checkedDate + '/' + $(this).val() + '/' + checkedSalary;
+        }
         $.ajax({
             url: route,
             type: 'Get',
@@ -156,9 +197,14 @@
         })
     });
     salary.change(function () {
-        let route = '/' + controller + '/Search?text=' + searchInput.val() + '&location=' +
-            select1.val() + '&category=' + select2.val() + '&type=' + checkedType + '&date=' + checkedDate +
-            '&experience=' + checkedExp + '&salary=' + $(this).val();
+        let route;
+        if (searchInput.val() == "") {
+            route = '/Job/ ' + '/' + select1.val() + '/' + select2.val() +
+                '/' + checkedType + '/' + checkedDate + '/' + checkedExp + '/' + $(this).val();
+        } else {
+            route = '/Job/' + searchInput.val() + '/' + select1.val() + '/' + select2.val() +
+                '/' + checkedType + '/' + checkedDate + '/' + checkedExp + '/' + $(this).val();
+        }
         $.ajax({
             url: route,
             type: 'Get',

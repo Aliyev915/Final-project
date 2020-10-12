@@ -6,6 +6,7 @@ using FinalProject.DAL;
 using FinalProject.Models;
 using FinalProject.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,13 +16,18 @@ namespace FinalProject.Areas.Admin.Controllers
     public class JobController : Controller
     {
         private readonly AppDbContext _db;
-        public JobController(AppDbContext db)
+        private readonly UserManager<AppUser> _usermanager;
+        public JobController(AppDbContext db, UserManager<AppUser> usermanager)
         {
             _db = db;
+            _usermanager = usermanager;
         }
-        public IActionResult Index()
+        [Authorize(Roles ="Admin, Moderator")]
+        public async Task<IActionResult> Index()
         {
-            IEnumerable<Job> model = _db.Jobs.Include(j => j.Location).Include(j => j.Type).Include(j => j.Category);
+            AppUser currentUser = await _usermanager.FindByNameAsync(User.Identity.Name);
+            IEnumerable<Job> model = _db.Jobs.Include(j => j.Location).Include(j => j.Type).Include(j => j.Category)
+                                            .Where(j=>j.AppUserId==currentUser.Id);
             return View(model);
         }
 

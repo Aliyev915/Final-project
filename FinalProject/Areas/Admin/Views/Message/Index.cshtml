@@ -36,9 +36,19 @@
                         <div class="message-text">
                             @if (item.IsRead)
                             {
-                                <p>
-                                    @item.Text
-                                </p>
+                                if (ViewBag.Role != "Moderator")
+                                {
+                                    <p>
+                                        @item.Text
+                                    </p>
+                                }
+                                else
+                                {
+                                    Candidate candidate = ViewBag.Candidate;
+                                    <p>
+                                        <a asp-area="" asp-controller="Candidate" asp-action="Detail" asp-route-name="@item.Text">@item.Text</a>
+                                    </p>
+                                }
                             }
                             else
                             {
@@ -50,6 +60,9 @@
                         <div class="reply">
                             <a asp-controller="Message" asp-action="Reply" asp-route-Id="@item.Id">
                                 <i class="fas fa-reply"></i>
+                            </a>
+                            <a asp-controller="Message" asp-action="DeleteMessage" asp-route-Id="@item.Id">
+                                <i class="fas fa-trash"></i>
                             </a>
                         </div>
                         @if (item.IsRead == false)

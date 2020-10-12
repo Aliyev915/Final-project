@@ -30,6 +30,8 @@ namespace FinalProject.Models
         public int CurrencyId { get; set; }
         public Currency Currency { get; set; }
         public ICollection<Bookmark> Bookmarks { get; set; }
+        public virtual AppUser AppUser { get; set; }
+        public string AppUserId { get; set; }
 
     }
 }

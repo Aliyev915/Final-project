@@ -90,6 +90,7 @@ namespace FinalProject.Controllers
             await _db.SaveChangesAsync();
             return RedirectToAction(nameof(Detail));
         }
+        [Route("Job/{text}/{location}/{category}/{type}/{date}/{experience}/{salary}")]
         public IActionResult Search(string text,string location,string category,string type,
                                     string date,string experience,string salary)
         {
@@ -113,9 +114,12 @@ namespace FinalProject.Controllers
             {
                 Jobs = jobs
             };
-            return PartialView("_SearchPartial",model);
+            return PartialView("_SearchPartial", model);
+            //return Json(model.Jobs.Count());
         }
 
+        [Route("Job/SearchFromHome/{text}/{location}")]
+        [Route("Job/SearchFromHome/{text}")]
         public IActionResult SearchFromHome(string text,string location)
         {
             ViewBag.Categories = _db.Categories;
@@ -126,18 +130,20 @@ namespace FinalProject.Controllers
             if (text != null && location==null)
             {
                 model = model.Where(j => j.Name.Contains(text));
-            }else if(text==null && location != null)
+            }
+            else if(text==null && location != null)
             {
                 Location loc = _db.Locations.FirstOrDefault(l=>l.Name==location);
                 model = model.Where(j => j.Location.Id==loc.Id);
-            }else if(text!=null && location != null)
+            }
+            else if(text!=null && location != null)
             {
                 Location loc = _db.Locations.FirstOrDefault(l => l.Name == location);
                 model = model.Where(j => j.Location.Id == loc.Id && j.Name.Contains(text));
             }
             return View(model);
         }
-
+        [Route("Job/Sort/{sort}")]
         public IActionResult Sort(string sort)
         {
             IEnumerable<Job> jobs = _db.Jobs.Include(j=>j.Category).Include(j=>j.Type).
@@ -154,6 +160,7 @@ namespace FinalProject.Controllers
             return PartialView("_SearchPartial", model);
         }
         [Authorize]
+        [Route("Job/BookMark/{Id}")]
         public async Task<IActionResult> BookMark(int? Id)
         {
             if (Id == null) return NotFound();
@@ -177,7 +184,25 @@ namespace FinalProject.Controllers
                 _db.Bookmarks.Remove(book);
             }
             await _db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
+        }
+        [Route("Job/Apply/{Id}")]
+        [Authorize]
+        public async Task<IActionResult> Apply(int Id)
+        {
+            Job job = _db.Jobs.Include(j=>j.AppUser).Include(j=>j.Category).Include(j=>j.Location).FirstOrDefault(j => j.Id == Id);
+            AppUser user = await _usermanager.FindByNameAsync(User.Identity.Name);
+            Candidate candidate = _db.Candidates.FirstOrDefault(c=>c.AppUserId==user.Id);
+            Message message = new Message
+            {
+                AppUserId = user.Id,
+                GoMessage = job.AppUser.Id,
+                Text = candidate.Fullname,
+                Time = DateTime.Now
+            };
+            await _db.Messages.AddAsync(message);
+            await _db.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
     }
 }

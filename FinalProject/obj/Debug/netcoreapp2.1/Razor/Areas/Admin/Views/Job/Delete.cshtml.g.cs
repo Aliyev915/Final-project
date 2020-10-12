@@ -82,12 +82,12 @@ using FinalProject.ViewModels;
             WriteLiteral("<div class=\"right-side\">\r\n    <h4>Post a Job</h4>\r\n    <div class=\"post\">\r\n        <div class=\"title\">\r\n            <h4>Basic Information</h4>\r\n        </div>\r\n        <div class=\"form\">\r\n            ");
             EndContext();
             BeginContext(254, 1480, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1dadb4c5e08b4e9b92ad3e6bb57479c6", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9d068e5ad9ac4071a5622827de771245", async() => {
                 BeginContext(274, 160, true);
                 WriteLiteral("\r\n                <div class=\"row\">\r\n                    <div class=\"col-lg-6\">\r\n                        <label>Job Title</label> <br>\r\n                        ");
                 EndContext();
                 BeginContext(434, 95, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "a8fb79c03fde430ea7a9a1f36ea75117", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "d589801e043e4738987cf8781185a5c6", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -124,7 +124,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 WriteLiteral("\r\n                    </div>\r\n                    <div class=\"col-lg-6\">\r\n                        <label for=\"\">Salary</label> <br>\r\n                        ");
                 EndContext();
                 BeginContext(686, 115, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "16014b6585014b9f833c48c078391cd6", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "82da1a614b0e45409e1fc9ec27787650", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -163,7 +163,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 WriteLiteral("\r\n                    </div>\r\n                    <div class=\"col-lg-6\">\r\n                        <label for=\"\">Experience</label> <br>\r\n                        ");
                 EndContext();
                 BeginContext(962, 99, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "90c4663c47d84a14aef8c6d0f5e9a0e4", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "abe1c14e22d74615886f5558e2305dd6", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -201,7 +201,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 WriteLiteral("\r\n                    </div>\r\n                    <div class=\"col-lg-12\">\r\n                        <label for=\"\">Job Description</label>\r\n                        ");
                 EndContext();
                 BeginContext(1223, 170, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("textarea", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "705c0eca8a2f40b2b9700911fa4d69f4", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("textarea", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8309e8b185804db182aae73f76b700d9", async() => {
                     BeginContext(1308, 30, true);
                     WriteLiteral("\r\n                            ");
                     EndContext();
@@ -242,7 +242,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_TextAreaTagHelper.For = ModelExpressionPro
                 WriteLiteral("\r\n                    </div>\r\n                    <div class=\"col-lg-6 mt-5\">\r\n                        <button class=\"btn btn-danger\">Delete</button>\r\n                        ");
                 EndContext();
                 BeginContext(1568, 93, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4740f457829c43e7b88730038a63ce0b", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2323f1ae786a47c5b9182daa8de8bd8e", async() => {
                     BeginContext(1650, 7, true);
                     WriteLiteral("Go Back");
                     EndContext();

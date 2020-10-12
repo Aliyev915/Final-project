@@ -97,11 +97,25 @@
                         </div>
                         <div class="col-md-4">
                             <div class="row">
+                                <input type="hidden" value="@item.Id" />
                                 <div class="favorite">
-                                    <i class="far fa-heart"></i>
+                                    @{
+                                        IEnumerable<Bookmark> bookmarks = ViewBag.IsMarked;
+                                    }
+                                    @if (bookmarks != null)
+                                    {
+                                        foreach (Bookmark bookmark in bookmarks)
+                                        {
+                                            if (bookmark.JobId == item.Id)
+                                            {
+                                                <i class="fas fa-heart"></i>
+                                            }
+                                        }
+                                        <i class="far fa-heart"></i>
+                                    }
                                 </div>
                                 <div class="apply">
-                                    <a asp-controller="Job" asp-action="Detail" class="btn-apply">Apply Now</a>
+                                    <a href="@Url.Action("Apply","Job",new {Id=item.Id })" class="btn-apply">Apply Now</a>
                                 </div>
                             </div>
                         </div>
@@ -173,12 +187,11 @@
                     </div>
                     <div class="blog-body">
                         <div class="title">
-                            <h3><a href="~/">@item.Title</a></h3>
+                            <h3><a href="@Url.Action("Detail","Blog",new { slug=item.Slug})">@item.Title</a></h3>
                         </div>
                         <div class="features">
                             <p><i class="fas fa-user"></i> Admin</p>
-                            <p><i class="far fa-comment-dots"></i> 27</p>
-                            <p><i class="far fa-heart"></i>27</p>
+                            <p><i class="far fa-comment-dots"></i>@item.Comments.Count()</p>
                         </div>
                         <div class="description">
                             @if (item.Description.Length <= 100)

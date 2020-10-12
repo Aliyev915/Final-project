@@ -88,9 +88,9 @@ $(document).ready(function () {
     // it is used for show search icon when search button hovered 
     let locationArea = $('.location-area');
     let location = $('#location div');
+    let inputLoc = $('#location input');
     let selectionList = $('.search-area .selection');
     let findJob = $('.findJob');
-    let inputLoc = $('#location input');
     locationArea.on('click', function (e) {
         selectionList.toggle();
     })
@@ -141,7 +141,7 @@ $(document).ready(function () {
         $(this).children().toggleClass('fas');
         let Id = $(this).prev().val();
         $.ajax({
-            url: '/Job/BookMark?Id=' + Id,
+            url: '/Job/BookMark/' + Id,
             type: 'Get'
         })
     })

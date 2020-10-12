@@ -4,14 +4,16 @@ using FinalProject.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FinalProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201012050959_AddUserColumn")]
+    partial class AddUserColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -827,7 +829,7 @@ namespace FinalProject.Migrations
 
             modelBuilder.Entity("FinalProject.Models.Job", b =>
                 {
-                    b.HasOne("FinalProject.Models.AppUser", "AppUser")
+                    b.HasOne("FinalProject.Models.AppUser")
                         .WithMany("Jobs")
                         .HasForeignKey("AppUserId");
 

@@ -25,5 +25,6 @@ namespace FinalProject.Models
         public IFormFile Photo { get; set; }
         public ICollection<CompanyModerator> CompanyModerators { get; set; }
         public ICollection<Bookmark> Bookmarks { get; set; }
+        public ICollection<Job> Jobs { get; set; }
     }
 }

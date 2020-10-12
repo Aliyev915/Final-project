@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using FinalProject.DAL;
 using FinalProject.Models;
 using FinalProject.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -39,7 +40,7 @@ namespace FinalProject.Controllers
             }
             return View(model);
         }
-        [Route("Blog/{slug}")]
+        [Route("Blog/Details/{slug}")]
         public async Task<IActionResult> Detail(string slug)
         {
             ViewBag.Blogs = _db.Blogs.OrderByDescending(b=>b.Id).Take(3);
@@ -67,6 +68,8 @@ namespace FinalProject.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
+        [Route("Blog/Details/{slug}")]
         public async Task<IActionResult> Detail(string slug,BlogDetailVM model)
         {
             ViewBag.Blogs = _db.Blogs.OrderByDescending(b => b.Id).Take(3);
@@ -94,7 +97,7 @@ namespace FinalProject.Controllers
             await _db.SaveChangesAsync();
             return RedirectToAction("Detail");
         }
-
+        [Authorize]
         public IActionResult Reply(int? Id)
         {
             Message message = _db.Messages.FirstOrDefault(m => m.Id == Id);
@@ -104,7 +107,7 @@ namespace FinalProject.Controllers
             };
             return PartialView("_ReplyPartial",model);
         }
-
+        [Route("Blog/Search/{search}")]
         public IActionResult Search(string search)
         {
             ViewBag.Latest = _db.Blogs.OrderByDescending(b => b.Id).Take(3);
@@ -123,6 +126,7 @@ namespace FinalProject.Controllers
             };
             return PartialView("_SearchPartial",model);
         }
+        [Route("Blog/{tag}")]
         public IActionResult TagSearch(string tag)
         {
             ViewBag.Latest = _db.Blogs.OrderByDescending(b => b.Id).Take(3);

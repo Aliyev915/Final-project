@@ -61,7 +61,7 @@ using FinalProject.ViewModels;
             WriteLiteral("    <div class=\"col-lg-4\">\r\n        <div class=\"left-section\">\r\n            ");
             EndContext();
             BeginContext(123, 7402, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "433100507c0a4932852e8896d3753308", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9b785a36374b46e79f3d36f49fd40f99", async() => {
                 BeginContext(139, 545, true);
                 WriteLiteral(@"
                 <div class=""form-group"">

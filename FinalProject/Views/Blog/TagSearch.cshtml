@@ -16,7 +16,7 @@
                                 <div class="col-md-6">
                                     <div class="blog">
                                         <div class="image">
-                                            <a asp-controller="Blog" asp-action="Detail"><img src="~/img/blog/@item.Image" alt=""></a>
+                                            <a href="@Url.Action("Detail","Blog",new {slug=item.Slug })"><img src="~/img/blog/@item.Image" alt=""></a>
                                             <div class="date">
                                                 <p class="text-white">@item.Time.ToString("dd")</p>
                                                 <p class="text-white">@item.Time.ToString("MMMM").Substring(0, 3)</p>
@@ -25,13 +25,12 @@
                                         <div class="blog-detail">
                                             <div class="title">
                                                 <h3>
-                                                    <a asp-controller="Blog" asp-action="Detail" asp-route-Id="@item.Id">@item.Title</a>
+                                                    <a href="@Url.Action("Detail","Blog",new {slug=item.Slug })">@item.Title</a>
                                                 </h3>
                                             </div>
                                             <div class="features">
                                                 <p><i class="fas fa-user"></i> Admin</p>
-                                                <p><i class="far fa-comment-dots"></i> 27</p>
-                                                <p><i class="far fa-heart"></i>27</p>
+                                                <p><i class="far fa-comment-dots"></i> @item.Comments.Count()</p>
                                             </div>
                                             <div class="description">
                                                 @if (item.Description.Length <= 100)
@@ -44,7 +43,7 @@
                                                 }
                                             </div>
                                             <div class="readMore">
-                                                <a asp-controller="Blog" asp-action="Detail" asp-route-Id="@item.Id">Read more</a>
+                                                <a href="@Url.Action("Detail","Blog",new { slug=item.Slug})">Read more</a>
                                             </div>
                                         </div>
                                     </div>
@@ -143,11 +142,10 @@
                                         <div class="post-detail">
                                             <div class="title">
                                                 <h6>
-                                                    <a asp-controller="Blog" asp-action="Detail" asp-route-Id="@item.Id">@item.Title</a>
+                                                    <a href="@Url.Action("Detail","Blog",new {slug=item.Slug })">@item.Title</a>
                                                 </h6>
                                             </div>
                                             <div class="info">
-                                                <span>$3000</span>
                                                 <span>
                                                     <i class="far fa-calendar-alt"></i>
                                                     @item.Time.ToString("dd MMMM, yyyy")
@@ -177,7 +175,7 @@
                         @foreach (Tag item in ViewBag.Tags)
                         {
                             <div class="tag">
-                                <a asp-action="TagSearch" asp-route-Tag="@item.Name">@item.Name</a>
+                                <a href="@Url.Action("TagSearch","Blog", new {tag=item.Name })">@item.Name</a>
                             </div>
                         }
                     </div>

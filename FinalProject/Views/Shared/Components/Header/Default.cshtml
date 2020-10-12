@@ -53,22 +53,24 @@
                     }
                     @if (User.Identity.IsAuthenticated)
                     {
-                        @if (User.Identity.IsAuthenticated)
+                        if (ViewBag.Role == "Moderator")
                         {
-                            if (ViewBag.Role == "Moderator")
-                            {
-                                <div class="addPost">
-                                    <a asp-area="Admin" asp-controller="Post" asp-action="Create" class="btnPost"> Post a Job</a>
-                                </div>
-                            }
-                            if (ViewBag.Role == "User")
-                            {
-                                <div class="addPost">
-                                    <a asp-controller="Candidate" asp-action="Create" class="btnPost">Add Resume</a>
-                                </div>
-                            }
+                            <div class="addPost">
+                                <a asp-area="Admin" asp-controller="Post" asp-action="Create" class="btnPost"> Post a Job</a>
+                            </div>
                         }
-
+                        if (ViewBag.Role == "User")
+                        {
+                            <div class="addPost">
+                                <a asp-controller="Candidate" asp-action="Create" class="btnPost">Add Resume</a>
+                            </div>
+                        }
+                        if (ViewBag.Role == "Admin")
+                        {
+                            <div class="addPost">
+                                <a asp-area="Admin" asp-controller="Dashboard" class="btnPost">Admin Panel</a>
+                            </div>
+                        }
                     }
                 </ul>
             </div>
@@ -112,8 +114,12 @@
                             }
                             else
                             {
-                                <a asp-controller="Account" asp-action="Logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
-                            }
+                                <li>
+                                    <a asp-controller="Profile" asp-action="Edit" asp-area="Admin" asp-route-username="@ViewBag.User">@ViewBag.User</a>
+                                </li>
+                                <li>
+                                    <a asp-controller="Account" asp-action="Logout"><i class="fas fa-sign-out-alt"></i>Logout</a>
+                                </li>}
                         </div>
                         @if (User.Identity.IsAuthenticated)
                         {
@@ -127,6 +133,12 @@
                             {
                                 <div class="addPost">
                                     <a asp-controller="Candidate" asp-action="Create" class="btnPost">Add Resume</a>
+                                </div>
+                            }
+                            if (ViewBag.Role == "Admin")
+                            {
+                                <div class="addPost">
+                                    <a asp-area="Admin" asp-controller="Dashboard" class="btnPost">Admin Panel</a>
                                 </div>
                             }
                         }
@@ -175,7 +187,12 @@
                             }
                             else
                             {
+                            <li>
+                                <a>@ViewBag.User</a>
+                            </li>
+                            <li>
                                 <a asp-controller="Account" asp-action="Logout"><i class="fas fa-sign-out-alt"></i>Logout</a>
+                            </li>
                             }
                         </div>
                         @if (User.Identity.IsAuthenticated)
@@ -190,6 +207,12 @@
                             {
                                 <div class="addPost">
                                     <a asp-controller="Candidate" asp-action="Create" class="btnPost">Add Resume</a>
+                                </div>
+                            }
+                            if (ViewBag.Role == "Admin")
+                            {
+                                <div class="addPost">
+                                    <a asp-area="Admin" asp-controller="Dashboard" class="btnPost">Admin Panel</a>
                                 </div>
                             }
                         }

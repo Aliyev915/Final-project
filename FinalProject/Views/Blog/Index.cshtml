@@ -176,7 +176,7 @@
                         @foreach (Tag item in ViewBag.Tags)
                         {
                             <div class="tag">
-                                <a asp-action="TagSearch" asp-route-Tag="@item.Name">@item.Name</a>
+                                <a href="@Url.Action("TagSearch","Blog",new { tag=item.Name})">@item.Name</a>
                             </div>
                         }
                     </div>

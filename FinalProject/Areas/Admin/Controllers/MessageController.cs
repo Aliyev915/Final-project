@@ -26,6 +26,8 @@ namespace FinalProject.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             AppUser user = await _usermanager.FindByNameAsync(User.Identity.Name);
+            ViewBag.Role = (await _usermanager.GetRolesAsync(user))[0];
+            ViewBag.Candidate = _db.Candidates.FirstOrDefault(c=>c.AppUserId==user.Id);
             IEnumerable<Message> model = _db.Messages.Include(m=>m.AppUser).Where(m=>m.GoMessage==user.Id);
             return View(model);
         }
@@ -87,6 +89,13 @@ namespace FinalProject.Areas.Admin.Controllers
                 Time = DateTime.Now
             };
             await _db.Messages.AddAsync(message);
+            await _db.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+        public async Task<IActionResult> DeleteMessage(int? Id)
+        {
+            Message message = await _db.Messages.FindAsync(Id);
+            _db.Messages.Remove(message);
             await _db.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

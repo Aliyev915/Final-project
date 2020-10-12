@@ -39,12 +39,12 @@ namespace FinalProject.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> Detail(int? Id)
+        public async Task<IActionResult> Detail(string name)
         {
-            if (Id == null) return NotFound();
+            if (name == null) return NotFound();
             Candidate candidate = await _db.Candidates.Include(c => c.Candidate_Skill).Include(c => c.Candidate_Education).
-                                    Include(c => c.Candidate_Experience).Include(c=>c.AppUser).
-                                    Include(c=>c.Location).FirstOrDefaultAsync(c => c.Id == Id);
+                                    Include(c => c.Candidate_Experience).Include(c => c.AppUser).
+                                    Include(c => c.Location).FirstOrDefaultAsync(c => c.Fullname == name);
             if (candidate == null) return NotFound();
             int experience = 0;
             if (candidate.Candidate_Experience.FirstOrDefault().ExperienceYear != "none")

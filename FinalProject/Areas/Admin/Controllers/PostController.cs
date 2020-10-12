@@ -59,6 +59,7 @@ namespace FinalProject.Areas.Admin.Controllers
             Job newJob = new Job
             {
                 Name = post.Title,
+                AppUserId=user.Id,
                 Description = post.Description,
                 Deadline = post.Deadline,
                 CompanyId=moderator.Company.Id,

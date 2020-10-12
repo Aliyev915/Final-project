@@ -87,7 +87,7 @@ WriteAttributeValue("", 120, ViewContext.RouteData.Values["Controller"], 120, 43
                                 ");
             EndContext();
             BeginContext(765, 35, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "793d41a3940a400a9b8d9a3d457787b0", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "abdd8b963f8e4644a2212a41331b1f3b", async() => {
                 BeginContext(785, 6, true);
                 WriteLiteral("newest");
                 EndContext();
@@ -109,7 +109,7 @@ WriteAttributeValue("", 120, ViewContext.RouteData.Values["Controller"], 120, 43
             WriteLiteral("\r\n                                ");
             EndContext();
             BeginContext(834, 35, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "abe1553ae91e4704bad2bfc04ccd611c", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0e08dc9aa44c4bd6a5b1e17ebb59ffce", async() => {
                 BeginContext(854, 6, true);
                 WriteLiteral("oldest");
                 EndContext();
@@ -144,7 +144,7 @@ WriteAttributeValue("", 120, ViewContext.RouteData.Values["Controller"], 120, 43
                                             ");
             EndContext();
             BeginContext(1377, 51, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4f475a3fedb546b18ee35fad5c52d861", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "449db64b8de342f186030d311d702cdb", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -263,7 +263,7 @@ WriteAttributeValue("", 1977, Url.Action("Detail","Employer" ,new {slug=@item.Sl
                 WriteLiteral("\r\n    ");
                 EndContext();
                 BeginContext(3666, 38, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "74e658fb9f37407f99cb02b72d595567", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ed1409b3ada7486090a4311fdf8fadff", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

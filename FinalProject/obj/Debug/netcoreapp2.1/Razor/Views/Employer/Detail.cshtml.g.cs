@@ -79,7 +79,7 @@ using FinalProject.ViewModels;
                                     ");
             EndContext();
             BeginContext(493, 49, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "adf665e313d942aa8fb802297141123b", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "a0844fbaf4734f6a8e13df0500188ebe", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -162,7 +162,7 @@ AddHtmlAttributeValue("", 522, Model.Logo, 522, 11, false);
                                                 ");
             EndContext();
             BeginContext(1877, 60, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "340b49d791184e4daee551c271259d9c", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "e85952b470fb44ce830691b778fd172f", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -273,7 +273,7 @@ AddHtmlAttributeValue("", 1906, item.Company.Logo, 1906, 18, false);
                                                     ");
             EndContext();
             BeginContext(3797, 211, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b5439cfd7b3c429cac6e0d65c4d4fc5c", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a113abbcae8a4f738e01baed6c35cd16", async() => {
                 BeginContext(3883, 121, true);
                 WriteLiteral("\r\n                                                        Apply Now\r\n                                                    ");
                 EndContext();
@@ -405,7 +405,7 @@ AddHtmlAttributeValue("", 1906, item.Company.Logo, 1906, 18, false);
                             ");
             EndContext();
             BeginContext(7166, 369, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f4aeb918920541149a0275125d749bf0", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3a7840211eb74ddca61d17ebac131575", async() => {
                 BeginContext(7182, 346, true);
                 WriteLiteral(@"
                                 <input type=""text"" placeholder=""Name"">
